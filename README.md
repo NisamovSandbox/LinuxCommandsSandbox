@@ -76,18 +76,20 @@ Todos los derechos pertenecientes a Andrés Ruslan Abadías Otal | Nisamov: gith
 
 # LinuxCommands | Comandos y Servicios
 
-Este repositorio está basado en los apuntes personales del creador [Andrés Ruslan Abadías Otal](https://github.com/Nisamov) (15/07/2022).
+Este repositorio está basado en los apuntes personales del creador [Andrés Ruslan Abadías Otal](https://github.com/Nisamov).
 
 > Linux Commands es un repositorio concebido para todas aquellas personas que desean aprender a realizar distintos servicios en sistemas Linux, así como para quienes buscan información detallada y específica sobre los contenidos disponibles en el propio repositorio.
 
-El formato de comandos establecido en ficheros `commands.md`, está basado en el documento original `Documento de Origen.txt`.
+El formato de comandos establecido en ficheros `commands.md`, está basado en el [Documento de Origen](.github/origins/LinuxCommandsOrigen.md) creado el 15/07/2022, siendo [document_gestion/commands.md](/document_gestion/commands.md) el producto definitivo de ese mismo fichero.
 
-### Estructura Árbol del Repositorio:
+### Estructura del Repositorio:
 ```sh
 .
 ├── .github
-│   └── media
-│       └── img.png
+│   ├── media
+│   │   └── img.png
+│   └── origins
+│       └── LinuxCommandsOrigen.md
 ├── access_control_lists
 │   ├── commands.md
 │   └── theory.md
@@ -159,7 +161,7 @@ El formato de comandos establecido en ficheros `commands.md`, está basado en el
 │   │   │   └── servers_isc-dhcp-server
 │   │   ├── dhcp_samba
 │   │   │   ├── smb.conf
-│   │   │   └── theroy.md
+│   │   │   └── theory.md
 │   │   ├── interfaces_net
 │   │   │   ├── dynamic-network.conf
 │   │   │   ├── static-network.conf
@@ -180,13 +182,19 @@ El formato de comandos establecido en ficheros `commands.md`, está basado en el
 │   └── user_gestion.md
 ├── virtual_private_network_openvpn
 │   └── commands.md
+├── web_server
+│   ├── apache2
+│   │   └── documentation.md
+│   ├── nginx
+│   │   └── documentation.md
+│   └── wordpress
+│       └── documentation.md
 ├── .gitignore
 ├── CONTRIBUTING.md
 ├── INFO.md
 ├── KEYWORD.md
 ├── LICENSE
-├── README.md
-└── SECURITY.md
+└── README.md
 ```
 <!--
 </div>
