@@ -67,7 +67,7 @@ Todos los derechos pertenecientes a Andrés Ruslan Abadías Otal | Nisamov: gith
   <div class="doc-header">
     <div>Andrés Ruslan Abadías Otal</div>
     <div>Página web: <a href="https://github.com/Nisamov">Github</a></div>
-    <div>Repositorio: <a href="https://github.com/Theritex/LinuxCommands">Repositorio Origen</a></div>
+    <div>Repositorio: <a href="https://github.com/Nisamov/LinuxCommands">Repositorio Origen</a></div>
     <div class="separator"></div>
   </div>
 -->

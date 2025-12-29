@@ -21,7 +21,7 @@ Para  el 11/09/2025, ya había entrado en grado superior, aportando así tanto n
 
 ## Infromación
 
-El contenido de Linux commands ha hecho que a partir de si mismo, puedan crearse nuevos repositorios, como bien son [TermuxCommands](https://github.com/Theritex/TermuxCommands) o [SwitchCommands](https://github.com/Theritex/SwitchCommands), estos, siendo una variante de LinuxCommands, cumplen con el mismo objetivo, proveer información y servir como hoja de apuntes completamente abierta.
+El contenido de Linux commands ha hecho que a partir de si mismo, puedan crearse nuevos repositorios, como bien [SwitchCommands](https://github.com/NisamovOrg/SwitchCommands), estos, siendo una variante de LinuxCommands, cumplen con el mismo objetivo, proveer información y servir como hoja de apuntes completamente abierta.
 El lenguaje oficial de LinuxCommands es el Español, cualquier otro idioma que se muestre en el repositorio ha de ser tomado como una referencia o falta de traducción, es posible que a la larga puedan aparecer versiones específicas para ciertos idiomas, no obstante, el original es y siempre será el Español.
 
 Las tildes son restringidas, permitendo la búsqueda exacta de los comandos mediante 'Control + H'.
@@ -51,7 +51,7 @@ cd /Desktop
 ```
 Clonamos el repositorio:
 ```
-git clone https://github.com/Theritex/LinuxCommands
+git clone https://github.com/Nisamov/LinuxCommands
 ```
 Este comando clonará el respositorio dentro de la localiación de escritorio, en caso de quererla en otra ubicación, ten en cuenta el idioma de tu sistema operativo y ambia los valores según tus preferencias:
 `/Desktop` = `/Escritorio`
@@ -69,7 +69,7 @@ sudo apt install git
 ```
 Clonamos el respotiorio:
 ```
-git clone https://github.com/Theritex/LinuxCommands /home/user/Documents
+git clone https://github.com/Nisamov/LinuxCommands /home/user/Documents
 ```
 Este comando clona el repositorio en la ruta indicada al final, si se elimina dicha ruta, el repositorio se clonará en la ruta donde se encuentre con la consola.
 
@@ -84,12 +84,6 @@ Las personas que en los orígenes aportaron grandes cantidades de infromación a
 - ⥏﹆⥑ Clara C. [Contribuidora en sección de gestión de ficheros y directorios]
 - ⥏﹆⥑ Juan P. [Contribuidor en sección de servicios servidor]
 - ⥏﹆⥑ Diego Gracía [Contribuidor en información del sistema]
-
-## Apoyo
-
-Si te ha servido nuestro contenido, considera apoyarnos a través de [buymeacoffee](https://www.buymeacoffee.com/theritex).
-
-Gracias por contar con nosotros y nuestro contenido, si deseas ponerte en contacto con nosotros, envíanos un mensaje a <theritex.contact@gmail.com>
 
 ## Licencia
 
