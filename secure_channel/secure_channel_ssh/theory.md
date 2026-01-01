@@ -28,7 +28,7 @@ Como:
 - `id_rsa.pub`(Clave publica [cliente y servidor])
 - `id_rsa`(Clave privada [Clave privada de neustro equipo para la autentificacion con el servidor y cliente])
 
->[!] Si generamos dos claves sin establecer un nombre, se sobreescribirán, por ene, si se han distribuido las claves, no podrá ser posible acceder.
+>[!] Si generamos dos claves sin establecer un nombre, se sobreescribirán, por ende, si se han distribuido las claves, no será posible acceder.
 
 **No hacer:**
 ```diff

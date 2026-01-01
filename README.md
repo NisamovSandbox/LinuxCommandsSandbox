@@ -82,6 +82,8 @@ Este repositorio está basado en los apuntes personales del creador [Andrés Rus
 
 El formato de comandos establecido en ficheros `commands.md`, está basado en el [Documento de Origen](.github/origins/LinuxCommandsOrigen.md) creado el 15/07/2022, siendo [document_gestion/commands.md](/document_gestion/commands.md) el producto definitivo de ese mismo fichero.
 
+[Más información a cerca del repositorio](.github/INFO.md)
+
 ### Estructura del Repositorio:
 
 <!-- AUTO-GENERATED-INDEX:START -->
