@@ -1,10 +1,23 @@
+## ¿Qué es SSH?
+
+SSH (**Secure Shell**) es un protocolo que permite la interacción segura entre máquinas a través de una línea de comandos.  
+Funciona tanto en sistemas **Linux** como **Windows** y utiliza cifrado para proteger la comunicación.
+
+- Protocolo: SSH
+- Puerto por defecto: **22/TCP**
+- Servicio: **sshd** (daemon que escucha peticiones en el puerto 22)
+- Flujo: IP → Red → Puerto
+
+Para conectarse por SSH es necesario conocer:
+- Usuario
+- Contraseña (o clave privada)
+
 # SSH Acceso, Claves y Seguridad
 **Generacion de clave ssh:**
 Creacion de clave publica y privada con nombre (id_rsa)
 ```sh
 [user@host ~]$ ssh-keygen
 ```
-
 **Configuracion cuenta remota para acceso:**
 ```sh
 [user@host ~]$ ssh-copy-id -i .ssh/key-with-pass.pub user@remotehost
