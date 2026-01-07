@@ -2,6 +2,8 @@
 
 Linux Commands es un repositorio creado por [Nisamov](https://github.com/Nisamov) con el objetivo de proveer información de una forma completa y sencilla.
 
+El formato de comandos establecido en ficheros `commands.md`, está basado en el [Documento de Origen](.github/origins/LinuxCommandsOrigen.md) creado el 15/07/2022, siendo [document_gestion/commands.md](/document_management/commands.md) la versión más actualizada, de ese mismo fichero.
+
 ## Origen
 
 El origen del proyecto está registrado sobre la fecha 01/03/2023, sin embargo, el origen oficial del documento, se sitúa a mediados del verano del año 2022, mientras Nisamov estaba comenzando a descubir el mundo de Linux y las posibilidades que traía consigo.
@@ -17,7 +19,13 @@ Trás el paso del tiempo, el documento fué ampliándose hasta tal punto que se 
 
 En 22/11/2023, se creó el primer directorio en un USB portatil con la funcionalidad de repositorio, creando así el primer repositorio local de LinuxCommands, con el tiempo, de ese repositorio no publicado, fueron apareciendo nuevos repositorios como TermuxCommands o SwitchCommands.
 
-Para  el 11/09/2025, ya había entrado en grado superior, aportando así tanto nuevo conocimiento, como actualizando el viejo contenido subido al repositorio.
+Para el 11/09/2025, ya había entrado en grado superior, aportando así tanto nuevo conocimiento, como actualizando el viejo contenido subido al repositorio.
+
+El 07/01/2026, hubo un cambio en la estructura del repositorio, estableciendo un estandar y mejorando el formato de este mismo, aumentando la facilidad a la hora de la búsqueda de información.
+
+## Apoyo Escolar
+
+Durante los estudios de grado medio, esta serie de documentos (anteriormente fué un unico documento word), el cual fué compartido con una gran parte de los compañeros de la clase, siendo así, que la mayoría lograron aprobar gracias a estos mismos.
 
 ## Contribución
 
