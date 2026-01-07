@@ -18,6 +18,10 @@ Sirve como base teórica para el resto de secciones del repositorio.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [combination_keys](/fundamentals/combination_keys)
+  - [combination_keys/combination.md](/fundamentals/combination_keys/combination.md)
+- [system_structure](/fundamentals/system_structure)
+  - [system_structure/linux-structure.md](/fundamentals/system_structure/linux-structure.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

@@ -18,6 +18,10 @@ Actúa como referencia base para asegurar coherencia, claridad y reutilización 
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [commands.md](/document_management/commands.md)
+- [compression.md](/document_management/compression.md)
+- [main.md](/document_management/main.md)
+- [theory.md](/document_management/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

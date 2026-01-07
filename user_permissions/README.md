@@ -18,6 +18,8 @@ Está orientada a un control seguro y organizado del sistema.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [system_users.md](/user_permissions/system_users.md)
+- [user_management.md](/user_permissions/user_management.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

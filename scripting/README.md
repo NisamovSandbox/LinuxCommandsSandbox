@@ -18,6 +18,8 @@ Incluye ejemplos prácticos y fundamentos de scripting.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [bash](/scripting/bash)
+  - [bash/theory.md](/scripting/bash/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

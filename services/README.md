@@ -18,6 +18,8 @@ Incluye comandos y fundamentos teóricos.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [commands.md](/services/commands.md)
+- [theory.md](/services/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

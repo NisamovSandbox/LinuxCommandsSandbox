@@ -19,6 +19,23 @@ Incluye tanto conceptos teóricos como ejemplos prácticos.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [dhcp_failover](/networking/dhcp_failover)
+  - [dhcp_failover/manual.md](/networking/dhcp_failover/manual.md)
+- [dhcp_samba](/networking/dhcp_samba)
+  - [dhcp_samba/theory.md](/networking/dhcp_samba/theory.md)
+- [firewall_ufw](/networking/firewall_ufw)
+  - [firewall_ufw/commands.md](/networking/firewall_ufw/commands.md)
+  - [firewall_ufw/theory.md](/networking/firewall_ufw/theory.md)
+- [interfaces_net](/networking/interfaces_net)
+  - [interfaces_net/theory.md](/networking/interfaces_net/theory.md)
+- [iptables](/networking/iptables)
+  - [iptables/command-list.md](/networking/iptables/command-list.md)
+  - [iptables/commands.md](/networking/iptables/commands.md)
+  - [iptables/theory.md](/networking/iptables/theory.md)
+- [netplan_net](/networking/netplan_net)
+  - [netplan_net/theory.md](/networking/netplan_net/theory.md)
+- [commands.md](/networking/commands.md)
+- [theory.md](/networking/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

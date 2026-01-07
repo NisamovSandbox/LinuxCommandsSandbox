@@ -18,6 +18,12 @@ Incluye diferentes tecnologías y enfoques.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [apache2](/web_server/apache2)
+  - [apache2/documentation.md](/web_server/apache2/documentation.md)
+- [nginx](/web_server/nginx)
+  - [nginx/documentation.md](/web_server/nginx/documentation.md)
+- [wordpress](/web_server/wordpress)
+  - [wordpress/documentation.md](/web_server/wordpress/documentation.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

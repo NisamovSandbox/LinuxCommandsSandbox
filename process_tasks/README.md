@@ -18,6 +18,9 @@ Está orientada a la administración y mantenimiento del sistema.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [cron](/process_tasks/cron)
+  - [cron/commands.md](/process_tasks/cron/commands.md)
+  - [cron/theory.md](/process_tasks/cron/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---

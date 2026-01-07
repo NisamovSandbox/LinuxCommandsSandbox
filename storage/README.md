@@ -18,6 +18,16 @@ Incluye teoría y ejemplos prácticos.
 ## 🗂️ Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
+- [backup](/storage/backup)
+  - [backup/commands.md](/storage/backup/commands.md)
+  - [backup/theory.md](/storage/backup/theory.md)
+- [partitions](/storage/partitions)
+  - [partitions/commands.md](/storage/partitions/commands.md)
+  - [partitions/theory.md](/storage/partitions/theory.md)
+  - [partitions/virtualdisk.md](/storage/partitions/virtualdisk.md)
+- [raid](/storage/raid)
+  - [raid/mount.md](/storage/raid/mount.md)
+  - [raid/theory.md](/storage/raid/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
 
 ---
