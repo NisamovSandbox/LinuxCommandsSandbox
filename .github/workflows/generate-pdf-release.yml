@@ -91,7 +91,11 @@ jobs:
             done
 
             PDF_NAME="$(echo "$module" | tr '[:lower:]' '[:upper:]').pdf"
-            pandoc "$TMP_MD" -o "$OUTPUT_DIR/$PDF_NAME"
+
+            pandoc "$TMP_MD" \
+              --pdf-engine=xelatex \
+              -V lang=es-ES \
+              -o "$OUTPUT_DIR/$PDF_NAME"
 
             echo "- $(echo "$module" | tr '[:lower:]' '[:upper:]')" >> "$RELEASE_BODY"
           done
