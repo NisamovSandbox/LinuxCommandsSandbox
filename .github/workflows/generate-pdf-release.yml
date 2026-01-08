@@ -21,7 +21,9 @@ jobs:
             pandoc \
             texlive-latex-base \
             texlive-latex-recommended \
-            texlive-latex-extra
+            texlive-latex-extra \
+            texlive-xetex \
+            fonts-dejavu-core
 
       - name: Generate PDFs and release body
         run: |
@@ -95,6 +97,7 @@ jobs:
             pandoc "$TMP_MD" \
               --pdf-engine=xelatex \
               -V lang=es-ES \
+              -V mainfont="DejaVu Sans" \
               -o "$OUTPUT_DIR/$PDF_NAME"
 
             echo "- $(echo "$module" | tr '[:lower:]' '[:upper:]')" >> "$RELEASE_BODY"
