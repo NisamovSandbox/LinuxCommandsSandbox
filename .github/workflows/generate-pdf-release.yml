@@ -45,7 +45,6 @@ jobs:
             system_data
             user_permissions
             web_server
-            commands
           )
 
           OUTPUT_DIR="output"
@@ -70,11 +69,28 @@ jobs:
             fi
 
             # Markdown en la raíz del módulo (excepto README.md)
-            find "$module" -maxdepth 1 -type f -name "*.md" ! -name "README.md" \
-              | sort | while read file; do
-                  cat "$file" >> "$TMP_MD"
-                  echo -e "\n\n" >> "$TMP_MD"
-              done
+            find "$module" -maxdepth 1 -type f -name "*.md" ! -name "README.md" | sort | while read file; do
+                if [[ "$(basename "$file")" == "commands.md" ]]; then
+                    # Generar PDF horizontal para commands.md
+                    echo "Generating horizontal PDF for $file"
+                    pandoc "$file" \
+                      --pdf-engine=xelatex \
+                      -V lang=es-ES \
+                      -V mainfont="Noto Sans" \
+                      -V sansfont="Noto Sans" \
+                      -V monofont="Noto Sans Mono" \
+                      -V CJKmainfont="Noto Sans CJK SC" \
+                      -V mainfontoptions="Renderer=Harfbuzz" \
+                      -V monofontoptions="Renderer=Harfbuzz" \
+                      -V geometry:margin=1.5cm \
+                      -V documentclass=article \
+                      -V classoption=landscape \
+                      -o "$OUTPUT_DIR/${module}_COMMANDS.pdf"
+                else
+                    cat "$file" >> "$TMP_MD"
+                    echo -e "\n\n" >> "$TMP_MD"
+                fi
+            done
 
             # Subdirectorios
             find "$module" -mindepth 2 -type d | sort | while read dir; do
@@ -85,7 +101,24 @@ jobs:
                   echo -e "\n\n## $(basename "$file")\n" >> "$TMP_MD"
 
                   if [ "$ext" = "md" ]; then
-                    cat "$file" >> "$TMP_MD"
+                    if [[ "$(basename "$file")" == "commands.md" ]]; then
+                        echo "Generating horizontal PDF for $file"
+                        pandoc "$file" \
+                          --pdf-engine=xelatex \
+                          -V lang=es-ES \
+                          -V mainfont="Noto Sans" \
+                          -V sansfont="Noto Sans" \
+                          -V monofont="Noto Sans Mono" \
+                          -V CJKmainfont="Noto Sans CJK SC" \
+                          -V mainfontoptions="Renderer=Harfbuzz" \
+                          -V monofontoptions="Renderer=Harfbuzz" \
+                          -V geometry:margin=1.5cm \
+                          -V documentclass=article \
+                          -V classoption=landscape \
+                          -o "$OUTPUT_DIR/$(basename $(dirname "$file"))_COMMANDS.pdf"
+                    else
+                        cat "$file" >> "$TMP_MD"
+                    fi
                   else
                     echo '```' >> "$TMP_MD"
                     cat "$file" >> "$TMP_MD"
@@ -97,28 +130,19 @@ jobs:
               done
             done
 
+            # Generar PDF vertical del módulo
             PDF_NAME="$(echo "$module" | tr '[:lower:]' '[:upper:]').pdf"
-
-            # Comprobar si es el módulo 'commands' para horizontal
-            if [[ "$module" == "commands" ]]; then
-              pandoc "$TMP_MD" \
-                --pdf-engine=xelatex \
-                -V lang=es-ES \
-                -V mainfont="Noto Sans" \
-                -V monofont="Noto Sans Mono" \
-                -V geometry:margin=1.5cm \
-                -V documentclass=article \
-                -V classoption=landscape \
-                -o "$OUTPUT_DIR/$PDF_NAME"
-            else
-              pandoc "$TMP_MD" \
-                --pdf-engine=xelatex \
-                -V lang=es-ES \
-                -V mainfont="Noto Sans" \
-                -V monofont="Noto Sans Mono" \
-                -V geometry:margin=1.5cm \
-                -o "$OUTPUT_DIR/$PDF_NAME"
-            fi
+            pandoc "$TMP_MD" \
+              --pdf-engine=xelatex \
+              -V lang=es-ES \
+              -V mainfont="Noto Sans" \
+              -V sansfont="Noto Sans" \
+              -V monofont="Noto Sans Mono" \
+              -V CJKmainfont="Noto Sans CJK SC" \
+              -V mainfontoptions="Renderer=Harfbuzz" \
+              -V monofontoptions="Renderer=Harfbuzz" \
+              -V geometry:margin=1.5cm \
+              -o "$OUTPUT_DIR/$PDF_NAME"
 
             echo "- $(echo "$module" | tr '[:lower:]' '[:upper:]')" >> "$RELEASE_BODY"
           done
