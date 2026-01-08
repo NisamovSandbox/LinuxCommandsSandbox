@@ -23,7 +23,9 @@ jobs:
             texlive-latex-recommended \
             texlive-latex-extra \
             texlive-xetex \
-            fonts-dejavu-core
+            fonts-noto \
+            fonts-noto-cjk \
+            fonts-noto-color-emoji
 
       - name: Generate PDFs and release body
         run: |
@@ -43,13 +45,16 @@ jobs:
             system_data
             user_permissions
             web_server
+            commands
           )
 
           OUTPUT_DIR="output"
           mkdir -p "$OUTPUT_DIR"
 
           RELEASE_BODY="$OUTPUT_DIR/release_body.md"
-          echo "Documentación disponible en formato PDF:" > "$RELEASE_BODY"
+          echo "![Release Image](.github/media/releases.png)" > "$RELEASE_BODY"
+          echo "" >> "$RELEASE_BODY"
+          echo "Documentación disponible en formato PDF:" >> "$RELEASE_BODY"
           echo "" >> "$RELEASE_BODY"
 
           for module in "${MODULES[@]}"; do
@@ -94,11 +99,26 @@ jobs:
 
             PDF_NAME="$(echo "$module" | tr '[:lower:]' '[:upper:]').pdf"
 
-            pandoc "$TMP_MD" \
-              --pdf-engine=xelatex \
-              -V lang=es-ES \
-              -V mainfont="DejaVu Sans" \
-              -o "$OUTPUT_DIR/$PDF_NAME"
+            # Comprobar si es el módulo 'commands' para horizontal
+            if [[ "$module" == "commands" ]]; then
+              pandoc "$TMP_MD" \
+                --pdf-engine=xelatex \
+                -V lang=es-ES \
+                -V mainfont="Noto Sans" \
+                -V monofont="Noto Sans Mono" \
+                -V geometry:margin=1.5cm \
+                -V documentclass=article \
+                -V classoption=landscape \
+                -o "$OUTPUT_DIR/$PDF_NAME"
+            else
+              pandoc "$TMP_MD" \
+                --pdf-engine=xelatex \
+                -V lang=es-ES \
+                -V mainfont="Noto Sans" \
+                -V monofont="Noto Sans Mono" \
+                -V geometry:margin=1.5cm \
+                -o "$OUTPUT_DIR/$PDF_NAME"
+            fi
 
             echo "- $(echo "$module" | tr '[:lower:]' '[:upper:]')" >> "$RELEASE_BODY"
           done
@@ -107,8 +127,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           tag_name: latest
-          name: Documentación Descargable PDF
+          name: 🔵 Docs Descargables PDF 📕
           body_path: output/release_body.md
           files: |
             output/*.pdf
-            .github/media/releases.png
