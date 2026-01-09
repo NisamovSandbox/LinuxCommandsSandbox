@@ -9,21 +9,23 @@ OUTPUT_DIR = ROOT_DIR / "output"
 EXCLUDE_DIRS = [ROOT_DIR / ".github"]
 OUTPUT_DIR.mkdir(exist_ok=True)
 
-# Fuente y opciones para XeLaTeX
+# Comando base de Pandoc con LuaLaTeX
 PANDOC_BASE_CMD = [
     "pandoc",
-    "--pdf-engine=xelatex",
+    "--pdf-engine=lualatex",
     "-V", "lang=es-ES",
     "-V", "mainfont=Noto Sans",
     "-V", "sansfont=Noto Sans",
     "-V", "monofont=Noto Sans Mono",
     "-V", "mainfontoptions=Renderer=Harfbuzz",
     "-V", "monofontoptions=Renderer=Harfbuzz",
-    "-V", "geometry:margin=1.5cm"
+    "-V", "geometry:margin=1.5cm",
+    "-V", "fontsize=11pt",
+    "-V", "colorlinks=true"
 ]
 
 def gather_files(directory: Path):
-    """Recoge los archivos según orden: README.md -> otros .md -> .yml/.yaml -> .conf"""
+    """Recoge los archivos en orden: README.md -> otros .md -> .yml/.yaml -> .conf"""
     readme = directory / "README.md"
     files = []
 
@@ -31,51 +33,54 @@ def gather_files(directory: Path):
     if readme.exists():
         files.append(readme)
 
-    # Otros archivos por extensión
     exts_order = [".md", ".yml", ".yaml", ".conf"]
     for ext in exts_order:
         for f in sorted(directory.glob(f"*{ext}")):
             if f.name != "README.md":
                 files.append(f)
-    
+
     # Subdirectorios
     for subdir in sorted([d for d in directory.iterdir() if d.is_dir() and d not in EXCLUDE_DIRS]):
         files.extend(gather_files(subdir))
-    
+
     return files
 
 def generate_pdf(directory: Path):
-    """Genera el PDF de un directorio"""
+    """Genera el PDF de un directorio, cada archivo en hoja nueva y sin nombres de archivo"""
     files = gather_files(directory)
     if not files:
         return
-    
+
     output_file = OUTPUT_DIR / f"{directory.name.upper()}.pdf"
 
-    # Crear archivo temporal con Markdown concatenado
+    # Crear archivo temporal concatenando Markdown
     temp_md = OUTPUT_DIR / f"{directory.name}_temp.md"
     with open(temp_md, "w", encoding="utf-8") as out_md:
-        for f in files:
-            out_md.write(f"# {f.name}\n\n")
-            # Comandos en horizontal
-            if f.name == "commands.md":
-                # PDF horizontal para commands.md
-                cmd = PANDOC_BASE_CMD + [
-                    "-V", "documentclass=article",
-                    "-V", "classoption=landscape",
-                    str(f),
-                    "-o", str(OUTPUT_DIR / f"{directory.name.upper()}_COMMANDS.pdf")
-                ]
-                subprocess.run(cmd, check=True)
+        for i, f in enumerate(files):
+            content = f.read_text(encoding="utf-8")
+
+            # Mantener bloques de código para .yaml/.yml/.conf
+            if f.suffix in [".yaml", ".yml", ".conf"]:
+                out_md.write("```\n")
+                out_md.write(content)
+                out_md.write("\n```\n")
             else:
-                # Markdown normal o conf/yaml
-                if f.suffix in [".yaml", ".yml", ".conf"]:
-                    out_md.write("```\n")
-                    out_md.write(f.read_text(encoding="utf-8"))
-                    out_md.write("\n```\n\n")
-                else:
-                    out_md.write(f.read_text(encoding="utf-8"))
-                    out_md.write("\n\n")
+                out_md.write(content)
+                out_md.write("\n\n")
+            
+            # Salto de página salvo que sea el último archivo
+            if i < len(files) - 1:
+                out_md.write("\n\\newpage\n")
+
+    # Comprobar si es commands.md para orientación horizontal
+    if any(f.name == "commands.md" for f in files):
+        cmd = PANDOC_BASE_CMD + [
+            str(temp_md),
+            "-V", "documentclass=article",
+            "-V", "classoption=landscape",
+            "-o", str(OUTPUT_DIR / f"{directory.name.upper()}_COMMANDS.pdf")
+        ]
+        subprocess.run(cmd, check=True)
 
     # Generar PDF principal
     cmd = PANDOC_BASE_CMD + [
@@ -85,10 +90,10 @@ def generate_pdf(directory: Path):
         "-o", str(output_file)
     ]
     subprocess.run(cmd, check=True)
-    temp_md.unlink()  # borrar temporal
+
+    temp_md.unlink()
 
 def main():
-    # Recorrer todos los subdirectorios de la raíz
     for item in ROOT_DIR.iterdir():
         if item.is_dir() and item not in EXCLUDE_DIRS:
             generate_pdf(item)

@@ -11,29 +11,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️Clonar el repositorio
+      # Clonar el repositorio
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2️Instalar dependencias necesarias para Pandoc/XeLaTeX y emojis
+      # Instalar dependencias Pandoc/LuaLaTeX y fuentes Noto
       - name: Install dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y \
             pandoc \
+            texlive-luatex \
             texlive-latex-base \
             texlive-latex-recommended \
             texlive-latex-extra \
-            texlive-xetex \
             fonts-noto \
             fonts-noto-color-emoji
 
-      # 3️Ejecutar el script Python que genera los PDFs
+      # Ejecutar script Python que genera PDFs
       - name: Run PDF generation script
         run: |
           python3 .github/scripts/generate-pdf-release.py
 
-      # 4️Crear el release body con la imagen y lista de PDFs
+      # Crear release body
       - name: Generate release body
         run: |
           RELEASE_BODY="output/release_body.md"
@@ -46,7 +46,7 @@ jobs:
             echo "- $(basename "$pdf")" >> "$RELEASE_BODY"
           done
 
-      # 5️Crear o reemplazar release con todos los PDFs generados
+      # Crear o reemplazar release con PDFs
       - name: Create or update release
         uses: softprops/action-gh-release@v2
         with:
