@@ -11,13 +11,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Configurar Python 3.11
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Instalar Silicon
-        run: pip install silicon
-
-      - name: Install dependencies
+      - name: Instalar dependencias de sistema
         run: |
           sudo apt-get update
           sudo apt-get install -y \
@@ -29,11 +31,13 @@ jobs:
             fonts-noto \
             silicon
 
-      - name: Generacion PDF
-        run: |
-          python3 .github/scripts/generate-pdf-release.py
+      - name: Instalar Silicon y dependencias Python
+        run: pip install silicon
 
-      - name: Generate release body
+      - name: Generacion PDF
+        run: python3 .github/scripts/generate-pdf-release.py
+
+      - name: Generar release body
         run: |
           RELEASE_BODY="output/release_body.md"
           echo "![Release Image](.github/media/released.png)" > "$RELEASE_BODY"
