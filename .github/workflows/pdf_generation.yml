@@ -45,6 +45,7 @@ jobs:
         run: |
           echo "## 📕 PDFs generados automáticamente" > release_body.md
           echo "" >> release_body.md
+          echo "![Release Image](.github/media/released.png)" >> release_body.md
           echo "### Documentación disponible:" >> release_body.md
           echo "" >> release_body.md
           for pdf in pdf/*.pdf; do
@@ -55,8 +56,10 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           tag_name: docs-pdf-${{ github.run_number }}
-          name: "Documentación PDF"
+          name: "🔵 Docs Descargables PDF 📕"
           body_path: release_body.md
           files: pdf/*.pdf
+          draft: false
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

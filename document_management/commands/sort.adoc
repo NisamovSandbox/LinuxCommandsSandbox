@@ -1,4 +1,4 @@
-sort::
+=== sort
 Ordenar lineas de texto.
 +
 [unordered.stack]

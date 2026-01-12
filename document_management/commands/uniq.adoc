@@ -1,4 +1,4 @@
-uniq::
+=== uniq
 Eliminar lineas duplicadas consecutivas.
 +
 [unordered.stack]
