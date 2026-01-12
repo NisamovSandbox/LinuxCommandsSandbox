@@ -7,7 +7,7 @@ Incluye ejemplos prácticos y fundamentos de scripting.
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Scripting en Bash
 - Automatización de tareas
@@ -15,7 +15,7 @@ Incluye ejemplos prácticos y fundamentos de scripting.
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [bash](/scripting/bash)
@@ -23,9 +23,3 @@ Incluye ejemplos prácticos y fundamentos de scripting.
 - [eBPF](/scripting/eBPF)
   - [eBPF/theory.md](/scripting/eBPF/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-Los scripts priorizan claridad y facilidad de comprensión.

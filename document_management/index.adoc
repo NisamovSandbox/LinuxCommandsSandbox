@@ -7,21 +7,18 @@ Andrés Ruslan Abadías Otal | github.com/Nisamov
 :sectnums:
 :pdf-page-size: A4
 :pdf-page-margin: [2cm, 2cm, 2cm, 2cm]
-
-Introducción breve al manual.
-
-LinuxCommands es un repositorio creado para servir como guía y apoyo a usuarios o administradores de sistemas Linux
-https://github.com/Nisamov/LinuxCommands
+:description: LinuxCommands es un repositorio creado para servir como guía y apoyo a usuarios o administradores de sistemas Linux
+:url-repo: https://github.com/Nisamov/LinuxCommands
+:lang: es
+:author: Andrés Ruslan Abadías Otal
 
 == Introducción
-
 Este manual está pensado como guía de referencia para:
 * Ámbito escolar y formativo
 * Administradores de sistemas Linux
 * Usuarios técnicos en proceso de aprendizaje
 
 == Comandos
-
 include::commands/touch.adoc[]
 include::commands/ls.adoc[]
 include::commands/tree.adoc[]

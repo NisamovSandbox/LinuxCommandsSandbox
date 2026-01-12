@@ -1,0 +1,9 @@
+cp::
+Copiar archivos o directorios.
++
+[unordered.stack]
+-r:: `cp -r` Copiar recursivamente el objetivo para ubicarla en la ruta destino
+-f:: `cp -f` Frozar la copia del objetivo en la ruta destino
+-a:: `cp -a` Copiar archivos manteniendo sus atributos
+-b:: `cp -b` Copiar archivos como copia de seguridad
+-i:: `cp -i` Solicitar confirmacion antes de sobreescribir el destino

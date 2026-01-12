@@ -1,0 +1,4 @@
+*
+[::apper::]
+[::lower::]
+etc

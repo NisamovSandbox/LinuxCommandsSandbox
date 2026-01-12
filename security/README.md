@@ -7,7 +7,7 @@ Incluye tanto prevención como control de accesos y comunicaciones seguras.
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Canales seguros
 - Servicios protegidos
@@ -15,7 +15,7 @@ Incluye tanto prevención como control de accesos y comunicaciones seguras.
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [proxy_squid](/security/proxy_squid)
@@ -25,9 +25,3 @@ Incluye tanto prevención como control de accesos y comunicaciones seguras.
   - [vpn_openvpn/documentation.md](/security/vpn_openvpn/documentation.md)
 - [audit.md](/security/audit.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-La seguridad se documenta desde un enfoque práctico y realista.

@@ -1,4 +1,62 @@
-# Generaciond e Documentos PDF a partir de index.adoc
-# En espera de actualizaciones futuras
+name: Generación PDF Asciidoctor
 
-# Entrará en cada directorio al primer nivel, leerá el index.adoc para generar un PDF  usando los recursos internos de commands/
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-pdfs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar Ruby y Asciidoctor PDF
+        run: |
+          sudo apt update
+          sudo apt install -y ruby-full build-essential
+          gem install asciidoctor-pdf --no-document
+
+      - name: Crear directorio de PDFs
+        run: mkdir -p pdf
+
+      - name: Buscar y generar PDFs desde index.adoc
+        run: |
+          for dir in */ ; do
+            if [ -f "$dir/index.adoc" ]; then
+              echo "Generando PDF para $dir/index.adoc..."
+              (cd "$dir" && asciidoctor-pdf index.adoc -o "../../pdf/${dir%/}.pdf")
+            fi
+          done
+
+      - name: Crear body del release
+        id: release_body
+        run: |
+          echo "## 🔹 PDFs Generados" > release_body.md
+          echo "" >> release_body.md
+          echo "![Release Image](.github/media/released.png)" >> release_body.md
+          echo "" >> release_body.md
+          echo "### Archivos PDF disponibles:" >> release_body.md
+          echo "" >> release_body.md
+          for pdf in pdf/*.pdf; do
+            echo "- $(basename "$pdf")" >> release_body.md
+          done
+          cat release_body.md
+
+      - name: Crear o actualizar Release con PDFs
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: docs-pdf-$(date +%Y%m%d%H%M%S)
+          name: "🔵 Docs Descargables PDF 📕"
+          body_path: release_body.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Subir PDFs al Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: pdf/*.pdf
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

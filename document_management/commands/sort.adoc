@@ -1,0 +1,12 @@
+sort::
+Ordenar lineas de texto.
++
+[unordered.stack]
+-n:: `sort -n` Ordenar lineas por valor numérico
+-r:: `sort -r` Ordenar lineas por valor numérico invertido
+-u:: `sort -u` Mostrar lineas individuales
+-k:: `sort -k Nº` Ordenar por la clumna NºX
+-t:: `sort -t` Ordenar con separador de campos
+-f:: `sort -f` Ignorar mayúsculas y minúsculas
+-h:: `sort -h` Ordenar peso detectado dentro de un archivo
+-o:: `sort -o` Guardar salida dentro de un archivo

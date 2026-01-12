@@ -7,7 +7,7 @@ Incluye tanto conceptos teóricos como ejemplos prácticos.
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Configuración de interfaces
 - Servicios de red
@@ -16,7 +16,7 @@ Incluye tanto conceptos teóricos como ejemplos prácticos.
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [dhcp_failover](/networking/dhcp_failover)
@@ -37,9 +37,3 @@ Incluye tanto conceptos teóricos como ejemplos prácticos.
 - [commands.md](/networking/commands.md)
 - [theory.md](/networking/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-La documentación prioriza escenarios reales y configuraciones habituales.

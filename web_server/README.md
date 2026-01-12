@@ -7,7 +7,7 @@ Incluye diferentes tecnologías y enfoques.
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Servidores web
 - Configuración básica y avanzada
@@ -15,7 +15,7 @@ Incluye diferentes tecnologías y enfoques.
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [apache2](/web_server/apache2)
@@ -25,9 +25,3 @@ Incluye diferentes tecnologías y enfoques.
 - [wordpress](/web_server/wordpress)
   - [wordpress/documentation.md](/web_server/wordpress/documentation.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-Las configuraciones documentadas están pensadas para entornos reales.

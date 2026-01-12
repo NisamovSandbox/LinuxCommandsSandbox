@@ -7,7 +7,7 @@ Actúa como referencia base para asegurar coherencia, claridad y reutilización 
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Formato de documentación de comandos
 - Convenciones estructurales
@@ -15,7 +15,7 @@ Actúa como referencia base para asegurar coherencia, claridad y reutilización 
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [commands](/document_management/commands)
@@ -23,9 +23,3 @@ Actúa como referencia base para asegurar coherencia, claridad y reutilización 
 - [compression.md](/document_management/compression.md)
 - [theory.md](/document_management/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-Este directorio contiene la referencia canónica del formato utilizado en LinuxCommands.

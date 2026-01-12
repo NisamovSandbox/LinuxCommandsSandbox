@@ -7,7 +7,7 @@ Incluye teoría y ejemplos prácticos.
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Particiones
 - Copias de seguridad
@@ -15,7 +15,7 @@ Incluye teoría y ejemplos prácticos.
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [backup](/storage/backup)
@@ -29,9 +29,3 @@ Incluye teoría y ejemplos prácticos.
   - [raid/mount.md](/storage/raid/mount.md)
   - [raid/theory.md](/storage/raid/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-Se prioriza la comprensión del funcionamiento interno.

@@ -7,7 +7,7 @@ Incluye comandos y prácticas habituales.
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Gestión de paquetes
 - Instalación y mantenimiento
@@ -15,14 +15,8 @@ Incluye comandos y prácticas habituales.
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [commands.md](/software_management/commands.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-El contenido es independiente de la distribución siempre que sea posible.

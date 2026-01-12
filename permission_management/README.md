@@ -7,7 +7,7 @@ Incluye tanto el modelo tradicional como extensiones avanzadas.
 
 ---
 
-## 🎯 Alcance de la sección
+## Alcance de la sección
 
 - Permisos de ficheros
 - Control de acceso
@@ -15,7 +15,7 @@ Incluye tanto el modelo tradicional como extensiones avanzadas.
 
 ---
 
-## 🗂️ Contenido disponible
+## Contenido disponible
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [access_control_lists](/permission_management/access_control_lists)
@@ -24,9 +24,3 @@ Incluye tanto el modelo tradicional como extensiones avanzadas.
 - [permissions.md](/permission_management/permissions.md)
 - [theory.md](/permission_management/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
-
----
-
-## 📌 Notas
-
-El contenido está orientado a una administración segura y controlada.

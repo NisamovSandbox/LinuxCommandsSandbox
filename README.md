@@ -83,7 +83,7 @@ Con el tiempo, se fue estructurando para que sea más fácil de navegar y consul
 
 ---
 
-## 🎯 Objetivos del proyecto
+## Objetivos del proyecto
 
 - Proporcionar un **formato claro y reutilizable** para documentar comandos Linux.
 - Facilitar una documentación **legible para humanos y mantenible a largo plazo**.
@@ -92,7 +92,7 @@ Con el tiempo, se fue estructurando para que sea más fácil de navegar y consul
 
 ---
 
-## 🧩 Enfoque
+## Enfoque
 
 El repositorio no pretende sustituir herramientas existentes como `man`, sino **complementarlas** mediante:
 
@@ -105,21 +105,21 @@ El formato utilizado está definido formalmente en un documento de origen y se a
 
 ---
 
-## 📄 Formato de documentación
+## Formato de documentación
 
 El formato base de los comandos se define en el documento de origen:
 
-- 📘 [Documento de Origen](.github/origins/LinuxCommandsOrigen.md)
+- [Documento de Origen](.github/origins/LinuxCommandsOrigen.md)
 
 La versión más actual y aplicada del formato puede encontrarse en:
 
-- 📂 [`document_management/commands.md`](/document_management/commands.md)
+- [`document_management/commands.md`](/document_management/commands.md)
 
 Este fichero actúa como **referencia canónica** del estándar utilizado en el repositorio.
 
 ---
 
-## 🗂️ Estructura del repositorio
+## Estructura del repositorio
 
 La organización del repositorio está pensada para facilitar la navegación y el crecimiento progresivo del contenido:
 
@@ -141,13 +141,13 @@ La organización del repositorio está pensada para facilitar la navegación y e
 
 ---
 
-## ℹ️ Información adicional
+## Información adicional
 
-- 📌 [Información general del repositorio](.github/INFO.md)
+-  [Información general del repositorio](.github/INFO.md)
 
 ---
 
-## 🤝 Contribuciones
+## Contribuciones
 
 Las contribuciones son bienvenidas siempre que respeten el formato y la estructura definidos.  
 El objetivo es mantener una documentación coherente y de alta calidad.
