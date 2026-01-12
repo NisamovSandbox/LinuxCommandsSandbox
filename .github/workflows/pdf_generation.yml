@@ -13,22 +13,30 @@ jobs:
       - name: Checkout del repositorio
         uses: actions/checkout@v4
 
-      - name: Instalar Ruby y Asciidoctor PDF
+      - name: Configurar Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Instalar Asciidoctor PDF
+        run: gem install asciidoctor-pdf --no-document
+
+      - name: Verificar instalación de Asciidoctor PDF
         run: |
-          sudo apt update
-          sudo apt install -y ruby-full build-essential
-          gem install --user-install asciidoctor-pdf --no-document
-          echo "$HOME/.gem/ruby/*/bin" >> $GITHUB_PATH
+          which asciidoctor-pdf
+          asciidoctor-pdf --version
 
       - name: Crear directorio de PDFs
         run: mkdir -p pdf
 
       - name: Buscar y generar PDFs desde index.adoc
         run: |
+          ASCIIDOCTOR=$(which asciidoctor-pdf)
           for dir in */ ; do
             if [ -f "$dir/index.adoc" ]; then
               echo "Generando PDF para $dir/index.adoc..."
-              (cd "$dir" && asciidoctor-pdf index.adoc -o "../../pdf/${dir%/}.pdf")
+              (cd "$dir" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/${dir%/}.pdf")
             fi
           done
 
@@ -46,18 +54,12 @@ jobs:
           done
           cat release_body.md
 
-      - name: Crear o actualizar Release con PDFs
+      - name: Crear Release con PDFs
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: docs-pdf-$(date +%Y%m%d%H%M%S)
+          tag_name: docs-pdf-${{ github.run_number }}
           name: "🔵 Docs Descargables PDF 📕"
           body_path: release_body.md
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Subir PDFs al Release
-        uses: softprops/action-gh-release@v1
-        with:
           files: pdf/*.pdf
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
