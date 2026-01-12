@@ -1,0 +1,56 @@
+= Administración de Documentos
+Andrés Ruslan Abadías Otal | github.com/Nisamov
+:toc:
+:toclevels: 2
+:icons: font
+:source-highlighter: rouge
+:sectnums:
+:pdf-page-size: A4
+:pdf-page-margin: [2cm, 2cm, 2cm, 2cm]
+
+Introducción breve al manual.
+
+LinuxCommands es un repositorio creado para servir como guía y apoyo a usuarios o administradores de sistemas Linux
+https://github.com/Nisamov/LinuxCommands
+
+== Introducción
+
+Este manual está pensado como guía de referencia para:
+* Ámbito escolar y formativo
+* Administradores de sistemas Linux
+* Usuarios técnicos en proceso de aprendizaje
+
+== Comandos
+
+include::commands/touch.adoc[]
+include::commands/ls.adoc[]
+include::commands/tree.adoc[]
+include::commands/cd.adoc[]
+include::commands/mv.adoc[]
+include::commands/sort.adoc[]
+include::commands/uniq.adoc[]
+include::commands/cp.adoc[]
+include::commands/export.adoc[]
+include::commands/stat.adoc[]
+include::commands/scp.adoc[]
+include::commands/fortune.adoc[]
+include::commands/cut.adoc[]
+include::commands/rm.adoc[]
+include::commands/mkdir.adoc[]
+include::commands/rmdir.adoc[]
+include::commands/cat.adoc[]
+include::commands/file.adoc[]
+include::commands/grep.adoc[]
+include::commands/find.adoc[]
+include::commands/echo.adoc[]
+include::commands/more.adoc[]
+include::commands/less.adoc[]
+include::commands/head.adoc[]
+include::commands/tail.adoc[]
+include::commands/ln.adoc[]
+include::commands/unlink.adoc[]
+include::commands/wc.adoc[]
+include::commands/mkfifo.adoc[]
+include::commands/gedit.adoc[]
+include::commands/tar.adoc[]
+include::commands/diff.adoc[]

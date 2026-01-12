@@ -1,5 +1,7 @@
 # Compresión de Ficheros y Directorios en Linux
 
+> [!] Este documento está pendiente de revisión.
+
 ## Introducción a la Compresión
 Linux ofrece múltiples herramientas para comprimir archivos y directorios, permitiendo reducir el espacio de almacenamiento y facilitar la transferencia de datos. Los formatos más comunes son **TAR**, **GZIP**, **BZIP2**, y **XZ**.
 

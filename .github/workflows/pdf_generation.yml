@@ -1,0 +1,4 @@
+# Generaciond e Documentos PDF a partir de index.adoc
+# En espera de actualizaciones futuras
+
+# Entrará en cada directorio al primer nivel, leerá el index.adoc para generar un PDF  usando los recursos internos de commands/

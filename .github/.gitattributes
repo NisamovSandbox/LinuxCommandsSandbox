@@ -1,3 +1,4 @@
 *.sh linguist-language=Shell
 *.md linguist-documentation
 *.bt linguist-language=BPF
+*.adoc linguist-language=Asciidoc

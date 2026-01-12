@@ -1,4 +1,7 @@
 # Teoría: Gestión de Ficheros y Directorios en Linux
+
+> [!] Este documento está pendiente de revisión.
+
 ## Sintaxis de comandos
 Los comandos en sistemas GNU/Linux siguen una sintaxis general:
 ```
