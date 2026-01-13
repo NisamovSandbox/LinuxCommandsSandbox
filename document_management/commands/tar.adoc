@@ -1,0 +1,40 @@
+=== tar
+Empaquetamiento de múltiples archivos y directorios.
+
+[unordered.stack]
+-c:: `tar -c` Crear un nuevo archivo tar
+-C:: `tar -C` Establecer el directorio de destino
+-x:: `tar -x` Extraer archivos de un paquete tar
+-t:: `tar -t` Listar el contenido del paquete tar
+-v:: `tar -v` Mostrar el proceso de empaquetado
+-f:: `tar -f` Especificar el nombre del archivo tar
+-z:: `tar -z` Empaquetar / desempaquetar usando gzip
++
+[source,bash]
+----
+# Empaquetar archivos y directorios con gzip
+tar -czvf proyecto.tar.gz src/ docs/ config/ README.md
+
+# Desempaquetar un archivo tar.gz
+tar -xzvf proyecto.tar.gz
+----
+-j:: `tar -j` Empaquetar / desempaquetar usando bzip2
++
+[source,bash]
+----
+# Empaquetar con bzip2
+tar -cjvf proyecto.tar.bz2 src/
+
+# Desempaquetar un archivo tar.bz2
+tar -xjvf proyecto.tar.bz2
+----
+-J:: `tar -J` Empaquetar / desempaquetar usando xz
++
+[source,bash]
+----
+# Empaquetar con xz
+tar -cJvf proyecto.tar.xz src/
+
+# Desempaquetar un archivo tar.xz
+tar -xJvf proyecto.tar.xz
+----

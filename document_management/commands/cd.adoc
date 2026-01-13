@@ -3,5 +3,3 @@ Establecer directorio de trabajo.
 
 [unordered.stack]
 ..:: `cd ..` Acceder al directorio padre
-
-====

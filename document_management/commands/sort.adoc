@@ -10,5 +10,3 @@ Ordenar lineas de texto.
 -f:: `sort -f` Ignorar mayúsculas y minúsculas
 -h:: `sort -h` Ordenar peso detectado dentro de un archivo
 -o:: `sort -o` Guardar salida dentro de un archivo
-
-====
