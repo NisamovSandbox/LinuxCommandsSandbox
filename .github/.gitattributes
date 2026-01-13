@@ -1,4 +1,4 @@
-*.sh linguist-language=Shell
-*.md linguist-documentation
-*.bt linguist-language=BPF
-*.adoc linguist-language=Asciidoc
+*.sh linguist-detectable=true
+*.bt linguist-detectable=true
+*.adoc linguist-detectable=true
+*.md linguist-detectable=true

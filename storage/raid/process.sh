@@ -1,4 +1,5 @@
-Esto es una prueba de RAID 1 con dos discos virtuales creados con archivos de imagen y dispositivos loopback en Linux.
+#!/bin/bash
+# Esto es una prueba de RAID 1 con dos discos virtuales creados con archivos de imagen y dispositivos loopback en Linux.
 
 sudo -i
 dd if=/dev/zero of=~/imagen1.img bs=1M count=1024

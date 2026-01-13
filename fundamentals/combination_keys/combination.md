@@ -55,4 +55,6 @@ ALT + C             §; capitaliza la letra bajo el cursor. Luego el cursor se m
 ALT + R             §; revierte cualquier cambio a un comando que hayas obtenido de tu historial si lo has editado.
 ALT + ?             §; lista las completaciones posibles para lo que se ha escrito
 ALT + ^             §; expande la línea al último resultado coincidente del historial
+!!                  §; repite el ultimo comando ejecutado
+exit                §; sale de la sesion actual
 ```
