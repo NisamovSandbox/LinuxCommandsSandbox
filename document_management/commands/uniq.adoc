@@ -1,6 +1,6 @@
 === uniq
 Eliminar lineas duplicadas consecutivas.
-+
+
 [unordered.stack]
 -c:: `uniq -c` Mostrar numero de repeticiones en columna
 -d:: `uniq -d` Mostrar lineas duplicadas

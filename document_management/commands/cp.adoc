@@ -1,6 +1,6 @@
 === cp
 Copiar archivos o directorios.
-+
+
 [unordered.stack]
 -r:: `cp -r` Copiar recursivamente el objetivo para ubicarla en la ruta destino
 -f:: `cp -f` Frozar la copia del objetivo en la ruta destino

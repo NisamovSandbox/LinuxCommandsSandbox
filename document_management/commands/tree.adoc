@@ -1,6 +1,6 @@
 === tree
 Listar ficheros con estructura de árbol.
-+
+
 [unordered.stack]
 -d:: `tree -d` Mostrar solo directorios
 -f:: `tree -f` Mostrar los archivos con su respectiva ruta

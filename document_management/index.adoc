@@ -14,6 +14,7 @@ Andrés Ruslan Abadías Otal | github.com/Nisamov
 
 == Introducción
 Este manual está pensado como guía de referencia para:
+
 * Ámbito escolar y formativo
 * Administradores de sistemas Linux
 * Usuarios técnicos en proceso de aprendizaje

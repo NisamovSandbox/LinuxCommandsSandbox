@@ -1,6 +1,6 @@
 === ls
 Listar ficheros del directorio actual.
-+
+
 [unordered.stack]
 -l:: `ls -l` Lista detallada
 -a:: `ls -a` Mostrar ficheros ocultos
@@ -18,7 +18,7 @@ Listar ficheros del directorio actual.
 -X:: `ls -X` Ordenar ficheros por extensión
 --color:: `ls --color` Agregar color a los diferente tipos de ficheros
 --block-size:: `ls --block-size=<criterio>` Mostrar peso de los archivos
-+
+
 [unordered.stack]
 b:: `--block-size=b` Mostrar peso por Bytes
 k:: `--block-size=k` Mostrar peso por Kilobytes
@@ -26,17 +26,15 @@ M:: `--block-size=M` Mostrar peso por Megabytes
 G:: `--block-size=G` Mostrar peso por Gigabytes
 T:: `--block-size=T` Mostrar peso por Terabytes
 P:: `--block-size=P` Mostrar peso por Petabytes
-+
 --time:: `ls --time=<valor>` Selecciona el campo de tiempo a usar
-+
+
 [unordered.stack]
 -atime:: Tiempo de último acceso
 -mtime:: Tiempo de última modificación (por defecto)
 -ctime:: Tiempo de último cambio de estado
 -birth:: Tiempo de creación (si está soportado)
-+
 --sort:: `ls --sort=<criterio>` Ordenar ficheros según un criterio
-+
+
 [unordered.stack]
 size:: `ls -l --sort=size` Ordenar por peso
 time:: `ls -l --sort=time` Ordenar por tiempo

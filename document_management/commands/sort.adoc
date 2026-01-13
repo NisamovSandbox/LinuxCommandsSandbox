@@ -1,6 +1,6 @@
 === sort
 Ordenar lineas de texto.
-+
+
 [unordered.stack]
 -n:: `sort -n` Ordenar lineas por valor numérico
 -r:: `sort -r` Ordenar lineas por valor numérico invertido

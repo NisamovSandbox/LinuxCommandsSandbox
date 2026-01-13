@@ -32,7 +32,6 @@
 │   └── -d                         §; Desasocia un dispositivo de bucle.
 ├── free                           §; Muestra la cantidad de memoria RAM y swap libre y usada.
 │   └── -h                         §; Muestra la información en formato legible (KB, MB, GB).
-├── pvmove                         §; Mueve datos de un volumen físico a otro dentro de un mismo grupo de volúmenes.
 ├── resize2fs                      §; Redimensiona un sistema de archivos ext2/ext3/ext4 después de cambiar el tamaño del volumen lógico.
 ├── partx                          §; Agregar, eliminar o listar particiones de un dispositivo en la tabla de particiones que el kernel tiene en memoria.
 │   └── -u                         §; Hacer que el kernel vuelva a leer la tabla de particiones de un disco y actualice su información.

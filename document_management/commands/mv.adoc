@@ -1,6 +1,6 @@
 === mv
 Mover archivo entre rutas.
-+
+
 [unordered.stack]
 -i:: `mv -i` Solicitar confirmación antes de sobreescribir archivos
 -v:: `mv -v` Mostrar archivos de origen y destino
