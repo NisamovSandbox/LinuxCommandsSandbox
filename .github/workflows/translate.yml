@@ -4,14 +4,18 @@ on:
   push:
     branches:
       - main
+
 jobs:
   translate:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout main
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
+          ref: main
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -19,21 +23,20 @@ jobs:
 
       - name: Install dependencies
         run: pip install deepl
-      - name: Checkout or create English branch
+
+      - name: Recreate english branch
         run: |
-          if git rev-parse --verify english; then
-              git checkout english
-          else
-              git checkout -b english
-          fi
+          git checkout -B english
+
       - name: Translate files
         env:
           DEEPL_AUTH_KEY: ${{ secrets.DEEPL_AUTH_KEY }}
         run: python .github/scripts/translate_repo.py
-      - name: Commit and push English branch
+
+      - name: Commit and push
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
-          git commit -m "Update English version" || echo "No changes to commit"
-          git push -u origin english --force
+          git commit -m "Auto-translate repository to English"
+          git push -f origin english
