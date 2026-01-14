@@ -42,4 +42,4 @@ for root, _, files in os.walk("."):
         continue
     for file in files:
         if file.endswith(EXTENSIONS):
-            translate_f_
+            translate_file(os.path.join(root, file))
