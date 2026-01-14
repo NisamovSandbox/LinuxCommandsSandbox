@@ -11,7 +11,6 @@
 :lang: es
 :author: Andrés Ruslan Abadías Otal
 
-[align=center]
 Andrés Ruslan Abadías Otal | github.com/Nisamov
 
 == Introducción
