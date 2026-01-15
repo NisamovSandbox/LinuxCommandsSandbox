@@ -1,6 +1,6 @@
 ![Cartel Principal](.github/media/LinuxCommandsWhiteTheme.png)
 
-[![Last commit](https://img.shields.io/github/last-commit/Nisamov/LinuxCommands?style=flat-square&color=000000&labelColor=ffffff)](https://github.com/Nisamov/LinuxCommands/commits) [![License](https://img.shields.io/static/v1?label=License&message=CC%20BY-NC-SA%204.0&color=000000&style=flat-square&labelColor=ffffff)](LICENSE) [![Stars](https://img.shields.io/github/stars/Nisamov/LinuxCommands?style=flat-square&color=000000&labelColor=ffffff)](https://github.com/Nisamov/LinuxCommands/stargazers) [![Forks](https://img.shields.io/github/forks/Nisamov/LinuxCommands?style=flat-square&color=000000&labelColor=ffffff)](https://github.com/Nisamov/LinuxCommands/network/members)
+[![Last commit](https://img.shields.io/github/last-commit/Nisamov/LinuxCommands?style=flat-square&color=000000&labelColor=ffffff)](https://github.com/Nisamov/LinuxCommands/commits) [![License](https://img.shields.io/static/v1?label=License&message=MIT&color=000000&style=flat-square&labelColor=ffffff)](LICENSE) [![Stars](https://img.shields.io/github/stars/Nisamov/LinuxCommands?style=flat-square&color=000000&labelColor=ffffff)](https://github.com/Nisamov/LinuxCommands/stargazers) [![Forks](https://img.shields.io/github/forks/Nisamov/LinuxCommands?style=flat-square&color=000000&labelColor=ffffff)](https://github.com/Nisamov/LinuxCommands/network/members)
 
 # LinuxCommands  
 ### Estructura y referencia para documentar comandos y servicios en Linux

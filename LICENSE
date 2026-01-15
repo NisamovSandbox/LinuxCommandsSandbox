@@ -1,31 +1,21 @@
-LICENCIA
+MIT License
 
-Este proyecto se distribuye bajo la licencia Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
+Copyright GitHub, Inc.
 
-CONDICIONES DE USO
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-Se concede permiso para:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Compartir: copiar y redistribuir el material en cualquier medio o formato.
-
-Adaptar: remezclar, transformar y crear obras derivadas a partir del material.
-
-Siempre que se cumplan las siguientes condiciones:
-
-Atribución: debe reconocerse adecuadamente la autoría, incluir una referencia a la licencia e indicar si se han realizado modificaciones. El reconocimiento no debe sugerir respaldo por parte del autor.
-
-Uso no comercial: el material no puede utilizarse con fines comerciales.
-
-Compartir bajo la misma licencia: cualquier obra derivada debe distribuirse bajo los mismos términos de esta licencia.
-
-Sin restricciones adicionales: no se permite aplicar medidas legales o técnicas que limiten los derechos concedidos por la licencia.
-
-INFORMACIÓN ADICIONAL
-
-El texto completo de la licencia está disponible en:
-https://creativecommons.org/licenses/by-nc-sa/4.0/deed.es
-
-PROPIEDAD INTELECTUAL
-
-Todos los derechos sobre el contenido de este proyecto pertenecen a su autor:
-Andrés Ruslan Abadías Otal.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
