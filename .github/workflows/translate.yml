@@ -1,0 +1,30 @@
+name: Translate Repository to English
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
+      - name: Install Argos Translate
+        run: |
+          pip install --upgrade pip
+          pip install argostranslate
+          pip install argostranslate[es-en]
+
+      - name: Translate and Push
+        run: python .github/scripts/translate_repo.py
