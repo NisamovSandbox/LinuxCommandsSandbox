@@ -1,0 +1,63 @@
+=== chattr
+Cambiar los atributos de los archivos en sistemas de ficheros ext2/ext3/ext4.
+
+[source,bash]
+----
+# Hacer un archivo inmutable
+chattr +i fichero.txt
+----
+
+[unordered.stack]
+-R:: `chattr -R` Aplicar cambios recursivamente
++
+[source,bash]
+----
+# Hacer inmutable todos los ficheros de un directorio
+chattr -R +i /ruta/directorio
+----
+
+[unordered.stack]
++i:: `chattr +i` Activar atributo inmutable
++
+[source,bash]
+----
+# Evitar que el archivo sea modificado o borrado
+chattr +i fichero.txt
+----
+
+[unordered.stack]
+-i:: `chattr -i` Desactivar atributo inmutable
++
+[source,bash]
+----
+# Permitir modificaciones de nuevo
+chattr -i fichero.txt
+----
+
+[unordered.stack]
++a:: `chattr +a` Activar solo agregado (append-only)
++
+[source,bash]
+----
+# Solo se pueden añadir datos, no eliminar
+chattr +a logfile.log
+----
+
+[unordered.stack]
+-A:: `chattr -A` Desactivar actualización de tiempo de acceso
++
+[source,bash]
+----
+# Evitar modificar el tiempo de último acceso
+chattr +A fichero.txt
+----
+
+[unordered.stack]
+--help:: `chattr --help` Mostrar ayuda
++
+[source,bash]
+----
+# Ver opciones disponibles
+chattr --help
+----
+

@@ -1,0 +1,15 @@
+=== gzip
+Empaquetamiento de múltiples archivos y directorios.
+
+[source,bash]
+----
+# Empaquetar archivos
+gzip archivo.tar archivo1 archivo2
+
+# Desempaquetar archivo
+gunzip archivo.txt.gz
+----
+[unordered.stack]
+-c:: `gzip -c` Empaquetar mantieniendo archivos originales
+-9:: `gzip -9` Empaquetar con la maxima compresión posible
+

@@ -1,0 +1,72 @@
+=== watch
+Ejecutar un comando periódicamente y mostrar su salida en pantalla.
+
+[source,bash]
+----
+# Ejecutar un comando cada 2 segundos
+watch ls
+----
+
+[unordered.stack]
+-n:: `watch -n` Intervalo de actualización
++
+[source,bash]
+----
+# Ejecutar cada 5 segundos
+watch -n 5 date
+----
+
+[unordered.stack]
+-d:: `watch -d` Resaltar cambios entre ejecuciones
++
+[source,bash]
+----
+# Mostrar diferencias entre actualizaciones
+watch -d free -h
+----
+
+[unordered.stack]
+-t:: `watch -t` Ocultar cabecera
++
+[source,bash]
+----
+# Mostrar solo la salida del comando
+watch -t uptime
+----
+
+[unordered.stack]
+-g:: `watch -g` Salir cuando cambie la salida
++
+[source,bash]
+----
+# Finalizar al detectar un cambio
+watch -g cat estado.txt
+----
+
+[unordered.stack]
+-e:: `watch -e` Detener en caso de error
++
+[source,bash]
+----
+# Parar si el comando devuelve error
+watch -e ls /ruta/inexistente
+----
+
+[unordered.stack]
+-b:: `watch -b` Resaltar cambios con negrita
++
+[source,bash]
+----
+# Mostrar cambios en negrita
+watch -b df -h
+----
+
+[unordered.stack]
+-quoted:: Uso con comillas
++
+[source,bash]
+----
+# Ejecutar comandos con tuberías
+watch 'ps aux | grep nginx'
+----
+

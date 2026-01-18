@@ -1,0 +1,72 @@
+=== setfacl
+Establecer o modificar listas de control de acceso (ACL) en ficheros y directorios.
+
+[source,bash]
+----
+# Asignar permisos ACL básicos
+setfacl -m u:usuario:rwx fichero.txt
+----
+
+[unordered.stack]
+-m:: `setfacl -m` Modificar o añadir entradas ACL
++
+[source,bash]
+----
+# Permitir lectura y ejecución a usuario “juan”
+setfacl -m u:juan:rx programa.sh
+----
+
+[unordered.stack]
+-x:: `setfacl -x` Eliminar entradas ACL
++
+[source,bash]
+----
+# Eliminar permiso específico de usuario
+setfacl -x u:ana fichero.txt
+----
+
+[unordered.stack]
+-b:: `setfacl -b` Quitar todas las ACL
++
+[source,bash]
+----
+# Eliminar todas las ACL, dejando permisos estándar
+setfacl -b fichero.txt
+----
+
+[unordered.stack]
+-k:: `setfacl -k` Quitar la máscara (mask)
++
+[source,bash]
+----
+# Eliminar la máscara ACL
+setfacl -k fichero.txt
+----
+
+[unordered.stack]
+-R:: `setfacl -R` Aplicar recursivamente
++
+[source,bash]
+----
+# Asignar permisos a todos los ficheros de un directorio
+setfacl -R -m g:grupo:rw /ruta/directorio
+----
+
+[unordered.stack]
+-d:: `setfacl -d` Establecer ACL por defecto
++
+[source,bash]
+----
+# Definir permisos por defecto para nuevos ficheros
+setfacl -d -m u:guest:rx /ruta/directorio
+----
+
+[unordered.stack]
+--remove-all:: `setfacl --remove-all` Eliminar todas las ACL (equivale a -b)
++
+[source,bash]
+----
+# Eliminar todas las ACL explícitamente
+setfacl --remove-all fichero.txt
+----
+

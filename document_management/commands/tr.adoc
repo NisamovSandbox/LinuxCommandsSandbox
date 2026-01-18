@@ -1,0 +1,72 @@
+=== tr
+Traducir o eliminar caracteres desde la entrada estándar.
+
+[source,bash]
+----
+# Reemplazar caracteres
+echo "hola mundo" | tr 'a-z' 'A-Z'
+----
+
+[unordered.stack]
+-d:: `tr -d` Eliminar caracteres
++
+[source,bash]
+----
+# Eliminar vocales
+echo "hola mundo" | tr -d 'aeiou'
+----
+
+[unordered.stack]
+-s:: `tr -s` Sustituir repeticiones por una sola
++
+[source,bash]
+----
+# Reducir espacios repetidos a uno solo
+echo "hola    mundo" | tr -s ' '
+----
+
+[unordered.stack]
+-c:: `tr -c` Complementar el conjunto de caracteres
++
+[source,bash]
+----
+# Eliminar todo excepto letras
+echo "hola123!!!" | tr -cd 'a-zA-Z'
+----
+
+[unordered.stack]
+-set1-set2:: `tr set1 set2` Traducir caracteres
++
+[source,bash]
+----
+# Cambiar comas por puntos y coma
+echo "uno,dos,tres" | tr ',' ';'
+----
+
+[unordered.stack]
+-[:class:]:: Clases de caracteres POSIX
++
+[source,bash]
+----
+# Convertir a mayúsculas usando clases POSIX
+echo "hola mundo" | tr '[:lower:]' '[:upper:]'
+----
+
+[unordered.stack]
+-newline:: Uso con saltos de línea
++
+[source,bash]
+----
+# Convertir saltos de línea en espacios
+tr '\n' ' ' < fichero.txt
+----
+
+[unordered.stack]
+-input-only:: Uso sobre entrada estándar
++
+[source,bash]
+----
+# tr no acepta nombres de fichero como argumento
+cat fichero.txt | tr '0-9' '#'
+----
+

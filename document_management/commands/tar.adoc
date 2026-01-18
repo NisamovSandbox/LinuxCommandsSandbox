@@ -1,6 +1,9 @@
 === tar
 Empaquetamiento de múltiples archivos y directorios.
 
+TAR (Tape ARchive) es un software que empaqueta múltiples archivos y directorios en un único archivo contenedor (`.tar`). 
+**Importante**: TAR por sí solo no comprime, solo empaqueta.
+
 [source,bash]
 ----
 # Crear un tar simple

@@ -1,0 +1,72 @@
+=== awk
+Procesar y analizar texto estructurado por columnas.
+
+[source,bash]
+----
+# Mostrar primera linea del fichero
+awk '{print $1}' fichero.txt
+----
+
+[unordered.stack]
+-F:: `awk -F` Definir separador de campos
++
+[source,bash]
+----
+# Usar ':' como separador
+awk -F: '{print $1, $3}' /etc/passwd
+----
+
+[unordered.stack]
+-print:: `awk '{print}'` Mostrar campos específicos
++
+[source,bash]
+----
+# Mostrar primera y tercera columna
+awk '{print $1, $3}' datos.txt
+----
+
+[unordered.stack]
+-condicion:: `awk 'condición'` Filtrar líneas
++
+[source,bash]
+----
+# Mostrar líneas donde el segundo campo sea mayor que 50
+awk '$2 > 50' valores.txt
+----
+
+[unordered.stack]
+-BEGIN:: `awk 'BEGIN {}` Ejecutar acciones iniciales
++
+[source,bash]
+----
+# Imprimir cabecera antes de procesar el fichero
+awk 'BEGIN {print "Inicio"} {print $1}' datos.txt
+----
+
+[unordered.stack]
+-END:: `awk 'END {}` Ejecutar acciones finales
++
+[source,bash]
+----
+# Sumar valores y mostrar resultado final
+awk '{suma += $2} END {print suma}' ventas.txt
+----
+
+[unordered.stack]
+-NR:: `NR` Número de registro (línea)
++
+[source,bash]
+----
+# Mostrar número de línea y contenido
+awk '{print NR, $0}' fichero.txt
+----
+
+[unordered.stack]
+-NF:: `NF` Número de campos por línea
++
+[source,bash]
+----
+# Mostrar último campo de cada línea
+awk '{print $NF}' fichero.txt
+----
+
