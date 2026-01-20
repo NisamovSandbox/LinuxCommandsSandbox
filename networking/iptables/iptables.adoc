@@ -1,0 +1,382 @@
+=== iptables
+
+Las IPTables consisten en un filtro automático de paquetes en red, funcionando como un cortafuegos.
+
+Dentro de la categoría de las IPTables existen diferentes elementos que permiten establecer distintas funcionalidades.
+
+==== Tablas
+
+* *INPUT* (Filtro): Indica si pasa o no pasa la información ya enrutada.
+* *OUTPUT* (Filtro): Indica si sale o no sale la información ya enrutada.
+* *PREROUTING*: Modificación del destino antes de que el paquete sea enrutado.
+* *POSTROUTING*: Modificación del destino después de que el paquete haya sido enrutado.
+* *FORWARD* (Redirección): Redirige la información a otro router.
+
+==== Cadenas
+
+* *FILTER*: Controla si los paquetes deben ser permitidos o bloqueados.
+* *NAT* (Network Address Translation): Traducción de Direcciones de Red.
+* *NAT PAT* (Port Address Translation): Traducción de Direcciones de Puerto.
+* *GCNAT* (NAT en cascada): Aplica NAT de manera recursiva, permitiendo NAT dentro de NAT.
+
+==== Opciones dentro de los filtros
+
+* *ACCEPT*: Acepta el tráfico.
+* *DROP*: Descarta el tráfico de forma silenciosa.
+* *REJECT*: Rechaza el tráfico enviando una notificación al remitente.
+
+==== Instrucciones dentro de NAT
+
+* *DNAT* (Destination NAT): Modifica la dirección de destino de los paquetes.
+* *REDIRECT* (Redirección): Oculta la IP cambiándola internamente.
+* *MASQUERADE* (NAT dinámica): Aplica NAT dinámica para ocultar las direcciones internas.
+* *SNAT* (Source NAT): Modifica la dirección de origen de los paquetes salientes.
+
+[source,bash]
+----
+# Listar las reglas actuales
+iptables -L
+----
+
+[unordered.stack]
+-A:: `iptables -A` Agrega una regla a una cadena
++
+[source,bash]
+----
+# Añadir una regla a INPUT
+iptables -A INPUT -j ACCEPT
+----
+
+[unordered.stack]
+-C:: `iptables -C` Comprueba si una regla existe en una cadena
++
+[source,bash]
+----
+# Comprobar si existe una regla en INPUT
+iptables -C INPUT -s 192.168.1.10 -j ACCEPT
+----
+
+[unordered.stack]
+-D:: `iptables -D` Elimina una regla de una cadena
++
+[source,bash]
+----
+# Eliminar la regla número 2 de INPUT
+iptables -D INPUT 2
+----
+
+[unordered.stack]
+-E:: `iptables -E` Renombra una cadena existente
++
+[source,bash]
+----
+# Renombrar una cadena personalizada
+iptables -E MI_CADENA NUEVA_CADENA
+----
+
+[unordered.stack]
+-F:: `iptables -F` Borra todas las reglas
++
+[source,bash]
+----
+# Borrar todas las reglas
+iptables -F
+----
+
+[unordered.stack]
+-I:: `iptables -I` Inserta una regla en una cadena
++
+[source,bash]
+----
+# Insertar una regla al inicio de INPUT
+iptables -I INPUT 1 -j ACCEPT
+----
+
+[unordered.stack]
+-L:: `iptables -L` Lista las reglas configuradas
++
+[source,bash]
+----
+# Listar reglas con detalle
+iptables -L -v
+----
+
+[unordered.stack]
+--line-numbers:: `iptables --line-numbers` Muestra reglas numeradas
++
+[source,bash]
+----
+# Listar reglas numeradas
+iptables -L --line-numbers
+----
+
+[unordered.stack]
+-n:: `iptables -n` Muestra IPs y puertos en formato numérico
++
+[source,bash]
+----
+# Listar reglas sin resolver nombres
+iptables -L -n
+----
+
+[unordered.stack]
+-v:: `iptables -v` Muestra información detallada
++
+[source,bash]
+----
+# Listar reglas con información detallada
+iptables -L -v
+----
+
+[unordered.stack]
+-x:: `iptables -x` Muestra contadores en formato numérico
++
+[source,bash]
+----
+# Mostrar contadores exactos
+iptables -L -x
+----
+
+[unordered.stack]
+-N:: `iptables -N` Crea una nueva cadena de usuario
++
+[source,bash]
+----
+# Crear una nueva cadena
+iptables -N MI_CADENA
+----
+
+[unordered.stack]
+-P:: `iptables -P` Establece la política por defecto
++
+[source,bash]
+----
+# Política por defecto DROP
+iptables -P INPUT DROP
+----
+
+[unordered.stack]
+-R:: `iptables -R` Reemplaza una regla existente
++
+[source,bash]
+----
+# Reemplazar la regla 1 de INPUT
+iptables -R INPUT 1 -j DROP
+----
+
+[unordered.stack]
+-X:: `iptables -X` Borra cadenas personalizadas
++
+[source,bash]
+----
+# Eliminar todas las cadenas personalizadas
+iptables -X
+----
+
+[unordered.stack]
+-Z:: `iptables -Z` Reinicia contadores
++
+[source,bash]
+----
+# Reiniciar contadores
+iptables -Z
+----
+
+[unordered.stack]
+-i:: `iptables -i` Interfaz de entrada
++
+[source,bash]
+----
+# Filtrar tráfico entrante por eth0
+iptables -A INPUT -i eth0 -j ACCEPT
+----
+
+[unordered.stack]
+-o:: `iptables -o` Interfaz de salida
++
+[source,bash]
+----
+# Filtrar tráfico saliente por eth0
+iptables -A OUTPUT -o eth0 -j ACCEPT
+----
+
+[unordered.stack]
+-p:: `iptables -p` Protocolo
++
+[source,bash]
+----
+# Permitir tráfico TCP
+iptables -A INPUT -p tcp -j ACCEPT
+----
+
+[unordered.stack]
+-s:: `iptables -s` Dirección de origen
++
+[source,bash]
+----
+# Permitir tráfico desde una IP
+iptables -A INPUT -s 192.168.1.0/24 -j ACCEPT
+----
+
+[unordered.stack]
+-d:: `iptables -d` Dirección de destino
++
+[source,bash]
+----
+# Bloquear tráfico hacia una IP
+iptables -A OUTPUT -d 10.0.0.5 -j DROP
+----
+
+[unordered.stack]
+-m:: `iptables -m` Uso de módulos
++
+[source,bash]
+----
+# Usar módulo state
+iptables -A INPUT -m state --state ESTABLISHED -j ACCEPT
+----
+
+[unordered.stack]
+--dport:: `--dport` Puerto de destino
++
+[source,bash]
+----
+# Permitir puerto 80
+iptables -A INPUT -p tcp --dport 80 -j ACCEPT
+----
+
+[unordered.stack]
+--sport:: `--sport` Puerto de origen
++
+[source,bash]
+----
+# Filtrar por puerto de origen
+iptables -A INPUT -p tcp --sport 1024:65535 -j ACCEPT
+----
+
+[unordered.stack]
+--tcp-flags:: `--tcp-flags` Banderas TCP
++
+[source,bash]
+----
+# Filtrar paquetes SYN
+iptables -A INPUT -p tcp --tcp-flags SYN,RST SYN -j ACCEPT
+----
+
+[unordered.stack]
+--syn:: `--syn` Establecer bit SYN
++
+[source,bash]
+----
+# Permitir nuevas conexiones TCP
+iptables -A INPUT -p tcp --syn -j ACCEPT
+----
+
+[unordered.stack]
+--icmp-type:: `--icmp-type` Tipo de mensaje ICMP
++
+[source,bash]
+----
+# Permitir ping
+iptables -A INPUT -p icmp --icmp-type echo-request -j ACCEPT
+----
+
+[unordered.stack]
+--state:: `--state` Estado de la conexión
++
+[source,bash]
+----
+# Permitir conexiones establecidas
+iptables -A INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT
+----
+
+[unordered.stack]
+-j:: `iptables -j` Acción de la regla
++
+[source,bash]
+----
+# Descartar tráfico
+iptables -A INPUT -j DROP
+----
+
+[unordered.stack]
+ACCEPT:: `-j ACCEPT` Aceptar paquetes
++
+[source,bash]
+----
+iptables -A INPUT -j ACCEPT
+----
+
+[unordered.stack]
+DROP:: `-j DROP` Descartar paquetes
++
+[source,bash]
+----
+iptables -A INPUT -j DROP
+----
+
+[unordered.stack]
+REJECT:: `-j REJECT` Rechazar paquetes
++
+[source,bash]
+----
+iptables -A INPUT -j REJECT
+----
+
+[unordered.stack]
+LOG:: `-j LOG` Registrar paquetes
++
+[source,bash]
+----
+iptables -A INPUT -j LOG
+----
+
+[unordered.stack]
+SNAT:: `-j SNAT` Traducción de dirección de origen
++
+[source,bash]
+----
+iptables -t nat -A POSTROUTING -j SNAT --to-source 1.2.3.4
+----
+
+[unordered.stack]
+DNAT:: `-j DNAT` Traducción de dirección de destino
++
+[source,bash]
+----
+iptables -t nat -A PREROUTING -j DNAT --to-destination 192.168.1.10
+----
+
+[unordered.stack]
+-t:: `iptables -t` Seleccionar tabla
++
+[source,bash]
+----
+# Usar tabla NAT
+iptables -t nat -L
+----
+
+[unordered.stack]
+-S:: `iptables -S` Mostrar reglas en formato de salida
++
+[source,bash]
+----
+iptables -S
+----
+
+[unordered.stack]
+-h:: `iptables -h` Mostrar ayuda
++
+[source,bash]
+----
+iptables -h
+----
+
+[unordered.stack]
+-V:: `iptables -V` Mostrar versión
++
+[source,bash]
+----
+iptables -V
+----
+

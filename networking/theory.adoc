@@ -1,0 +1,99 @@
+= Fundamentos de Direccionamiento y Configuración de Red
+:toc:
+:toclevels: 3
+:sectnums:
+
+== Conceptos Básicos de Red
+
+[cols="2,5,3", options="header"]
+|===
+| Concepto | Explicación | Persistencia de la configuración
+
+| Dirección MAC
+| Identificador físico único asignado por el fabricante a una tarjeta de red. Opera en la capa 2 (Enlace de datos) del modelo OSI y se utiliza para la comunicación dentro de la red local.
+| Permanente. No cambia salvo que se sustituya la tarjeta de red o se modifique manualmente (MAC spoofing).
+
+| Dirección IP
+| Identificador lógico asignado a un dispositivo dentro de una red que utiliza el protocolo IP (capa 3 – Red). Permite la comunicación entre dispositivos de la misma red y entre redes distintas.
+| Puede ser persistente (IP estática) o no persistente (IP dinámica mediante DHCP).
+
+| IP estática
+| Dirección IP configurada manualmente en el sistema. Permanece fija y no depende de servidores externos.
+| Persistente. Se mantiene tras reinicios y reconexiones.
+
+| IP dinámica
+| Dirección IP asignada automáticamente por un servidor DHCP cuando el dispositivo se conecta a la red.
+| No persistente. Puede cambiar en cada reconexión o al expirar la concesión (lease).
+
+| Máscara de subred
+| Define qué parte de la dirección IP identifica a la red y qué parte al host. Determina si dos dispositivos pertenecen a la misma red.
+| Persistente si se configura manualmente; variable si se asigna mediante DHCP.
+
+| Puerta de enlace (Gateway)
+| Dispositivo, normalmente un router, que permite la comunicación entre la red local y otras redes, incluida Internet. Es el destino por defecto del tráfico externo.
+| Persistente si se configura manualmente; no persistente si se obtiene por DHCP.
+
+| Servidores DNS
+| Sistemas encargados de traducir nombres de dominio (por ejemplo, www.google.com) a direcciones IP. Facilitan la navegación y el acceso a servicios.
+| Persistentes si se configuran manualmente; variables si se asignan por DHCP.
+|===
+
+== Persistencia de la Configuración de Red
+
+La persistencia de la configuración hace referencia a la capacidad de un sistema para conservar los parámetros de red tras reinicios, apagados o desconexiones.
+
+Una configuración persistente:
+** Se almacena de forma permanente en el sistema.
+** No cambia a menos que el administrador la modifique explícitamente.
+** Ejemplo: IP estática, máscara y DNS configurados manualmente.
+
+Una configuración no persistente:
+** Se asigna de forma automática y temporal.
+** Puede variar entre reinicios o reconexiones.
+** Ejemplo: IP dinámica proporcionada por un servidor DHCP.
+
+En términos prácticos, la persistencia aporta estabilidad y previsibilidad, mientras que la no persistencia facilita la automatización y escalabilidad, especialmente en redes grandes.
+
+== Visualización de la Configuración de Red en Linux
+
+Para consultar las interfaces y direcciones de red en sistemas Linux se utilizan los siguientes comandos:
+
+[source,bash]
+ip a
+
+o bien:
+
+[source,bash]
+ip address show
+
+== Interfaces de Red
+
+[cols="2,6", options="header"]
+|===
+| Interfaz | Descripción
+
+| lo
+| Interfaz de loopback. Representa al propio sistema. Utiliza la dirección 127.0.0.1 y se emplea para comunicaciones internas y pruebas locales.
+
+| eth0, eth1, …
+| Interfaces Ethernet tradicionales. Corresponden a tarjetas de red cableadas.
+
+| wlan0, wlan1, …
+| Interfaces de red inalámbrica (Wi-Fi).
+
+| enpXsY
+| Nomenclatura moderna de interfaces Ethernet basada en Predictable Network Interface Names. Funcionalmente equivalente a eth0.
+
+| virbr0
+| Interfaz virtual creada por sistemas de virtualización como KVM/QEMU. Se usa para redes internas de máquinas virtuales.
+
+| docker0
+| Interfaz virtual creada por Docker para gestionar la red interna de contenedores.
+
+| tun0 / tap0
+| Interfaces virtuales de túnel utilizadas habitualmente por VPNs.
+
+| br0
+| Interfaz puente (bridge). Une varias interfaces físicas o virtuales en una única red lógica.
+|===
+
