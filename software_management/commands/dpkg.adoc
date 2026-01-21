@@ -1,0 +1,113 @@
+=== dpkg
+Gestión de paquetes de bajo nivel en sistemas Debian y derivados
+
+El comando `dpkg` es el gestor de paquetes de bajo nivel para paquetes `.deb`.
+No resuelve dependencias automáticamente; normalmente se usa junto con `apt`.
+
+[source,bash]
+----
+# Instalación de un paquete local .deb
+dpkg -i paquete.deb
+----
+
+[unordered.stack]
+-i:: `dpkg -i` Instalar un paquete `.deb`
++
+[source,bash]
+----
+# Instalar un paquete desde un archivo local
+dpkg -i paquete.deb
+----
+
+NOTE: Si hay dependencias no satisfechas, deberá ejecutar posteriormente:
+----
+apt -f install
+----
+
+[unordered.stack]
+-r:: `dpkg -r` Eliminar un paquete (conserva configuración)
++
+[source,bash]
+----
+# Eliminar un paquete pero mantener archivos de configuración
+dpkg -r paquete
+----
+
+[unordered.stack]
+-P:: `dpkg -P` Eliminar un paquete y su configuración (purge)
++
+[source,bash]
+----
+# Eliminar completamente el paquete
+dpkg -P paquete
+----
+
+[unordered.stack]
+-l:: `dpkg -l` Listar paquetes
++
+[source,bash]
+----
+# Listar todos los paquetes instalados
+dpkg -l
+
+# Filtrar por nombre
+dpkg -l nginx
+----
+
+[unordered.stack]
+-s:: `dpkg -s` Mostrar estado de un paquete
++
+[source,bash]
+----
+# Mostrar información del paquete instalado
+dpkg -s paquete
+----
+
+[unordered.stack]
+-L:: `dpkg -L` Listar archivos instalados por un paquete
++
+[source,bash]
+----
+# Mostrar los archivos que instala un paquete
+dpkg -L paquete
+----
+
+[unordered.stack]
+-S:: `dpkg -S` Buscar a qué paquete pertenece un archivo
++
+[source,bash]
+----
+# Averiguar qué paquete proporciona un archivo
+dpkg -S /bin/ls
+----
+
+[unordered.stack]
+-c:: `dpkg -c` Listar contenido de un `.deb`
++
+[source,bash]
+----
+# Mostrar el contenido de un paquete sin instalarlo
+dpkg -c paquete.deb
+----
+
+[unordered.stack]
+-I:: `dpkg -I` Mostrar información de un `.deb`
++
+[source,bash]
+----
+# Mostrar información detallada del paquete .deb
+dpkg -I paquete.deb
+----
+
+[unordered.stack]
+--configure:: `dpkg --configure` Configurar paquetes pendientes
++
+[source,bash]
+----
+# Configurar paquetes desempaquetados pero no configurados
+dpkg --configure -a
+----
+
+NOTE: `dpkg` no gestiona repositorios ni dependencias automáticamente.
+Para una gestión completa del sistema se recomienda usar `apt`.
+

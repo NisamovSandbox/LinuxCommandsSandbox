@@ -1,0 +1,144 @@
+=== pacman
+Gestión de paquetes en Arch Linux y derivados
+
+El comando `pacman` es el gestor de paquetes nativo de Arch Linux. Gestiona paquetes
+binarios y resuelve dependencias automáticamente, manteniendo el sistema en modelo
+rolling release.
+
+[source,bash]
+----
+# Instalación de paquete "ejemplo"
+pacman -S ejemplo
+----
+
+[unordered.stack]
+-S:: `pacman -S` Instalar paquetes
++
+[source,bash]
+----
+# Instalar un paquete
+pacman -S nginx
+
+# Instalar varios paquetes
+pacman -S vim curl git
+----
+
+[unordered.stack]
+-R:: `pacman -R` Eliminar paquetes
++
+[source,bash]
+----
+# Eliminar un paquete (mantiene dependencias)
+pacman -R nginx
+----
+
+[unordered.stack]
+-Rs:: `pacman -Rs` Eliminar paquetes y dependencias no usadas
++
+[source,bash]
+----
+# Eliminar paquete y dependencias que no sean requeridas por otros
+pacman -Rs nginx
+----
+
+[unordered.stack]
+-Rns:: `pacman -Rns` Eliminación completa
++
+[source,bash]
+----
+# Eliminar paquete, dependencias y archivos de configuración
+pacman -Rns nginx
+----
+
+[unordered.stack]
+-Ss:: `pacman -Ss` Buscar paquetes en repositorios
++
+[source,bash]
+----
+# Buscar paquetes relacionados con "nginx"
+pacman -Ss nginx
+----
+
+[unordered.stack]
+-Q:: `pacman -Q` Consultar paquetes instalados
++
+[source,bash]
+----
+# Listar todos los paquetes instalados
+pacman -Q
+
+# Consultar un paquete concreto
+pacman -Q nginx
+----
+
+[unordered.stack]
+-Qs:: `pacman -Qs` Buscar entre paquetes instalados
++
+[source,bash]
+----
+# Buscar un paquete instalado
+pacman -Qs nginx
+----
+
+[unordered.stack]
+-Qi:: `pacman -Qi` Mostrar información de un paquete instalado
++
+[source,bash]
+----
+# Mostrar información detallada
+pacman -Qi nginx
+----
+
+[unordered.stack]
+-Ql:: `pacman -Ql` Listar archivos de un paquete
++
+[source,bash]
+----
+# Mostrar archivos instalados por un paquete
+pacman -Ql nginx
+----
+
+[unordered.stack]
+-F:: `pacman -F` Buscar archivos en repositorios
++
+[source,bash]
+----
+# Buscar qué paquete proporciona un archivo
+pacman -F /usr/bin/python
+----
+
+NOTE: Requiere tener la base de datos de archivos sincronizada:
+----
+pacman -Fy
+----
+
+[unordered.stack]
+-Syu:: `pacman -Syu` Actualizar el sistema completo
++
+[source,bash]
+----
+# Sincronizar repositorios y actualizar todo el sistema
+pacman -Syu
+----
+
+[unordered.stack]
+-Sc:: `pacman -Sc` Limpiar caché de paquetes
++
+[source,bash]
+----
+# Eliminar paquetes antiguos de la caché
+pacman -Sc
+----
+
+[unordered.stack]
+-Scc:: `pacman -Scc` Limpiar completamente la caché
++
+[source,bash]
+----
+# Eliminar toda la caché de paquetes
+pacman -Scc
+----
+
+NOTE: En Arch Linux se recomienda actualizar siempre el sistema de forma completa
+usando `pacman -Syu` y evitar actualizaciones parciales.
+

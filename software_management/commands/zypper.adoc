@@ -1,0 +1,69 @@
+=== zypper
+Gestión de paquetes en sistemas SUSE y openSUSE
+
+El comando `zypper` es el gestor de paquetes de alto nivel en sistemas SUSE.
+Trabaja con paquetes RPM y resuelve dependencias automáticamente.
+
+[source,bash]
+----
+# Actualizar repositorios
+zypper refresh
+----
+
+[unordered.stack]
+install:: `zypper install` Instalar paquetes
++
+[source,bash]
+----
+# Instalar un paquete
+zypper install nginx
+----
+
+[unordered.stack]
+remove:: `zypper remove` Eliminar paquetes
++
+[source,bash]
+----
+# Eliminar un paquete
+zypper remove nginx
+----
+
+[unordered.stack]
+search:: `zypper search` Buscar paquetes
++
+[source,bash]
+----
+# Buscar paquetes relacionados con "nginx"
+zypper search nginx
+----
+
+[unordered.stack]
+info:: `zypper info` Mostrar información de un paquete
++
+[source,bash]
+----
+# Mostrar información detallada
+zypper info nginx
+----
+
+[unordered.stack]
+update:: `zypper update` Actualizar paquetes instalados
++
+[source,bash]
+----
+# Actualizar todos los paquetes
+zypper update
+----
+
+[unordered.stack]
+dup:: `zypper dup` Actualización de distribución
++
+[source,bash]
+----
+# Actualización completa del sistema (rolling release)
+zypper dup
+----
+
+NOTE: `zypper dup` es equivalente a una actualización completa del sistema y puede
+instalar o eliminar paquetes para resolver dependencias.
+

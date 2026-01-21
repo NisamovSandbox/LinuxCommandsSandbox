@@ -1,0 +1,119 @@
+=== rpm
+Gestión de paquetes de bajo nivel en sistemas basados en RPM
+
+El comando `rpm` es el gestor de paquetes de bajo nivel para paquetes `.rpm`.
+No gestiona repositorios ni resuelve dependencias automáticamente; suele usarse
+junto con `dnf` o `yum`.
+
+[source,bash]
+----
+# Instalación de un paquete local .rpm
+rpm -i paquete.rpm
+----
+
+[unordered.stack]
+-i:: `rpm -i` Instalar un paquete `.rpm`
++
+[source,bash]
+----
+# Instalar un paquete desde un archivo local
+rpm -i paquete.rpm
+----
+
+[unordered.stack]
+-U:: `rpm -U` Actualizar o instalar un paquete
++
+[source,bash]
+----
+# Actualizar o instalar el paquete
+rpm -U paquete.rpm
+----
+
+[unordered.stack]
+-e:: `rpm -e` Eliminar un paquete
++
+[source,bash]
+----
+# Eliminar un paquete instalado
+rpm -e paquete
+----
+
+[unordered.stack]
+-q:: `rpm -q` Consultar paquetes
++
+[source,bash]
+----
+# Consultar si un paquete está instalado
+rpm -q paquete
+
+# Mostrar todos los paquetes instalados
+rpm -qa
+----
+
+[unordered.stack]
+-qi:: `rpm -qi` Mostrar información de un paquete
++
+[source,bash]
+----
+# Mostrar información detallada del paquete
+rpm -qi paquete
+----
+
+[unordered.stack]
+-ql:: `rpm -ql` Listar archivos de un paquete
++
+[source,bash]
+----
+# Mostrar archivos instalados por el paquete
+rpm -ql paquete
+----
+
+[unordered.stack]
+-qf:: `rpm -qf` Buscar a qué paquete pertenece un archivo
++
+[source,bash]
+----
+# Averiguar qué paquete proporciona un archivo
+rpm -qf /usr/bin/bash
+----
+
+[unordered.stack]
+-qc:: `rpm -qc` Listar archivos de configuración
++
+[source,bash]
+----
+# Mostrar archivos de configuración del paquete
+rpm -qc paquete
+----
+
+[unordered.stack]
+-qR:: `rpm -qR` Mostrar dependencias de un paquete
++
+[source,bash]
+----
+# Listar dependencias requeridas por el paquete
+rpm -qR paquete
+----
+
+[unordered.stack]
+-V:: `rpm -V` Verificar integridad de un paquete
++
+[source,bash]
+----
+# Verificar archivos instalados frente a la base de datos RPM
+rpm -V paquete
+----
+
+[unordered.stack]
+-K:: `rpm -K` Verificar firma e integridad de un `.rpm`
++
+[source,bash]
+----
+# Comprobar la firma y checksum del paquete
+rpm -K paquete.rpm
+----
+
+NOTE: `rpm` trabaja directamente contra la base de datos RPM y no resuelve
+dependencias automáticamente. Para gestión completa del sistema se recomienda
+usar `dnf`.
+

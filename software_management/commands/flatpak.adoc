@@ -1,0 +1,59 @@
+=== flatpak
+Gestión de paquetes Flatpak (paquetes universales)
+
+Flatpak es un sistema de distribución de aplicaciones orientado a escritorio,
+independiente de la distribución.
+
+[source,bash]
+----
+# Añadir repositorio Flathub
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+----
+
+[unordered.stack]
+install:: `flatpak install` Instalar aplicaciones
++
+[source,bash]
+----
+# Instalar una aplicación desde Flathub
+flatpak install flathub org.mozilla.firefox
+----
+
+[unordered.stack]
+remove:: `flatpak uninstall` Eliminar aplicaciones
++
+[source,bash]
+----
+# Eliminar una aplicación
+flatpak uninstall org.mozilla.firefox
+----
+
+[unordered.stack]
+list:: `flatpak list` Listar aplicaciones instaladas
++
+[source,bash]
+----
+# Mostrar aplicaciones Flatpak instaladas
+flatpak list
+----
+
+[unordered.stack]
+search:: `flatpak search` Buscar aplicaciones
++
+[source,bash]
+----
+# Buscar aplicaciones
+flatpak search firefox
+----
+
+[unordered.stack]
+update:: `flatpak update` Actualizar aplicaciones
++
+[source,bash]
+----
+# Actualizar todas las aplicaciones Flatpak
+flatpak update
+----
+
+NOTE: Flatpak utiliza runtimes compartidos y aislamiento mediante sandbox.
+

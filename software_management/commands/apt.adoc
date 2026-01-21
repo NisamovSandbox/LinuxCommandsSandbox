@@ -1,0 +1,147 @@
+==== apt
+Gestión de paquetes en sistemas Debian y derivados
+
+Instalación y administración de paquetes mediante la interfaz de alto nivel `apt`.
+El comando `apt` sustituye en uso interactivo a `apt-get` y `apt-cache`, aunque estos
+siguen existiendo.
+
+[source,bash]
+----
+# Instalación de paquete "ejemplo" (forma recomendada)
+apt install ejemplo
+
+# Forma antigua (sigue siendo válida)
+apt-get install ejemplo
+----
+
+[unordered.stack]
+list:: `apt list` Listar paquetes
++
+[source,bash]
+----
+# Listar todos los paquetes
+apt list
+
+# Listar solo paquetes instalados
+apt list --installed
+
+# Listar paquetes actualizables
+apt list --upgradable
+----
+
+[unordered.stack]
+search:: `apt search` Buscar paquetes por nombre o descripción
++
+[source,bash]
+----
+# Buscar paquetes relacionados con "nginx"
+apt search nginx
+----
+
+[unordered.stack]
+show:: `apt show` Mostrar información detallada de un paquete
++
+[source,bash]
+----
+apt show nginx
+----
+
+[unordered.stack]
+install:: `apt install` Instalar paquetes
++
+[source,bash]
+----
+apt install nginx
+apt install vim curl git
+----
+
+[unordered.stack]
+remove:: `apt remove` Eliminar paquetes (conserva configuración)
++
+[source,bash]
+----
+apt remove nginx
+----
+
+[unordered.stack]
+purge:: `apt purge` Eliminar paquetes y su configuración
++
+[source,bash]
+----
+apt purge nginx
+----
+
+[unordered.stack]
+reinstall:: `apt reinstall` Reinstalar paquetes
++
+[source,bash]
+----
+apt reinstall nginx
+----
+
+[unordered.stack]
+autoremove:: `apt autoremove` Eliminar dependencias no usadas
++
+[source,bash]
+----
+apt autoremove
+----
+
+[unordered.stack]
+update:: `apt update` Actualizar la lista de paquetes disponibles
++
+[source,bash]
+----
+apt update
+----
+
+[unordered.stack]
+upgrade:: `apt upgrade` Actualizar paquetes instalados
++
+[source,bash]
+----
+apt upgrade
+----
+
+[unordered.stack]
+full-upgrade:: `apt full-upgrade` / `apt dist-upgrade` Actualización completa del sistema
++
+[source,bash]
+----
+# Actualiza paquetes y maneja dependencias inteligentes
+apt full-upgrade
+# Equivalente a apt dist-upgrade
+apt dist-upgrade
+----
+
+[unordered.stack]
+edit-sources:: `apt edit-sources` Editar repositorios
++
+[source,bash]
+----
+apt edit-sources
+----
+
+[unordered.stack]
+satisfy:: `apt satisfy` Satisfacer dependencias manualmente
++
+[source,bash]
+----
+apt satisfy 'libssl1.1 (>= 1.1.1)'
+----
+
+[unordered.stack]
+release-upgrade:: `do-release-upgrade` Actualizar la distribución completa
++
+[source,bash]
+----
+# Actualiza de una versión de Ubuntu a otra (ej: 20.04 → 22.04)
+sudo do-release-upgrade
+----
+
+NOTE: `apt` es una interfaz de alto nivel que integra funcionalidades de `apt-get`,
+`apt-cache` y `apt-config`.  
+`upgrade` actualiza paquetes instalados sin eliminar dependencias.  
+`full-upgrade` o `dist-upgrade` actualiza todo el sistema manejando cambios de dependencias.  
+`do-release-upgrade` actualiza la distribución completa y requiere reinicio.
+

@@ -1,0 +1,69 @@
+=== snap / snapctl
+Gestión de paquetes Snap (paquetes universales)
+
+Snap es un sistema de paquetes autocontenidos desarrollado por Canonical.
+`snapctl` se utiliza principalmente para administración avanzada.
+
+[source,bash]
+----
+# Instalar un snap
+snap install ejemplo
+----
+
+[unordered.stack]
+install:: `snap install` Instalar snaps
++
+[source,bash]
+----
+# Instalar un paquete snap
+snap install code
+----
+
+[unordered.stack]
+remove:: `snap remove` Eliminar snaps
++
+[source,bash]
+----
+# Eliminar un snap
+snap remove code
+----
+
+[unordered.stack]
+list:: `snap list` Listar snaps instalados
++
+[source,bash]
+----
+# Mostrar snaps instalados
+snap list
+----
+
+[unordered.stack]
+find:: `snap find` Buscar snaps
++
+[source,bash]
+----
+# Buscar paquetes snap
+snap find docker
+----
+
+[unordered.stack]
+refresh:: `snap refresh` Actualizar snaps
++
+[source,bash]
+----
+# Actualizar todos los snaps
+snap refresh
+----
+
+[unordered.stack]
+services:: `snap services` Gestionar servicios snap
++
+[source,bash]
+----
+# Mostrar servicios gestionados por snap
+snap services
+----
+
+NOTE: Los paquetes Snap se actualizan automáticamente y se ejecutan en entornos
+aislados (sandbox).
+

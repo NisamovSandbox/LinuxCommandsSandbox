@@ -1,0 +1,69 @@
+==== apk
+Gestión de paquetes en Alpine Linux
+
+El comando `apk` es el gestor de paquetes ligero de Alpine Linux, muy utilizado
+en contenedores y sistemas minimalistas.
+
+[source,bash]
+----
+# Actualizar índices de paquetes
+apk update
+----
+
+[unordered.stack]
+add:: `apk add` Instalar paquetes
++
+[source,bash]
+----
+# Instalar un paquete
+apk add nginx
+----
+
+[unordered.stack]
+del:: `apk del` Eliminar paquetes
++
+[source,bash]
+----
+# Eliminar un paquete
+apk del nginx
+----
+
+[unordered.stack]
+search:: `apk search` Buscar paquetes
++
+[source,bash]
+----
+# Buscar paquetes relacionados con "nginx"
+apk search nginx
+----
+
+[unordered.stack]
+info:: `apk info` Mostrar información de paquetes
++
+[source,bash]
+----
+# Mostrar información del paquete
+apk info nginx
+----
+
+[unordered.stack]
+upgrade:: `apk upgrade` Actualizar paquetes
++
+[source,bash]
+----
+# Actualizar todos los paquetes
+apk upgrade
+----
+
+[unordered.stack]
+cache:: `apk cache` Gestionar caché
++
+[source,bash]
+----
+# Limpiar caché de paquetes
+apk cache clean
+----
+
+NOTE: `apk` está diseñado para ser rápido y minimalista, ideal para entornos
+de contenedores y sistemas embebidos.
+

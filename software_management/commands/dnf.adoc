@@ -1,0 +1,149 @@
+=== dnf
+Gestión de paquetes en sistemas Red Hat, Fedora, Rocky Linux y derivados
+
+El comando `dnf` (Dandified YUM) es el gestor de paquetes moderno que sustituye a `yum`.
+Gestiona paquetes RPM y resuelve dependencias de forma automática.
+
+[source,bash]
+----
+# Instalación de paquete "ejemplo"
+dnf install ejemplo
+----
+
+[unordered.stack]
+list:: `dnf list` Listar paquetes
++
+[source,bash]
+----
+# Listar todos los paquetes
+dnf list
+
+# Listar paquetes instalados
+dnf list installed
+
+# Listar paquetes disponibles
+dnf list available
+
+# Listar paquetes actualizables
+dnf list updates
+----
+
+[unordered.stack]
+search:: `dnf search` Buscar paquetes por nombre o descripción
++
+[source,bash]
+----
+# Buscar paquetes relacionados con "httpd"
+dnf search httpd
+----
+
+[unordered.stack]
+info:: `dnf info` Mostrar información detallada de un paquete
++
+[source,bash]
+----
+# Mostrar información completa del paquete
+dnf info httpd
+----
+
+[unordered.stack]
+install:: `dnf install` Instalar paquetes
++
+[source,bash]
+----
+# Instalar un paquete
+dnf install httpd
+
+# Instalar varios paquetes
+dnf install vim curl git
+----
+
+[unordered.stack]
+remove:: `dnf remove` Eliminar paquetes
++
+[source,bash]
+----
+# Eliminar un paquete
+dnf remove httpd
+----
+
+[unordered.stack]
+reinstall:: `dnf reinstall` Reinstalar paquetes
++
+[source,bash]
+----
+# Reinstalar un paquete
+dnf reinstall httpd
+----
+
+[unordered.stack]
+autoremove:: `dnf autoremove` Eliminar dependencias no usadas
++
+[source,bash]
+----
+# Eliminar paquetes instalados como dependencias y ya no necesarios
+dnf autoremove
+----
+
+[unordered.stack]
+update:: `dnf update` Actualizar paquetes
++
+[source,bash]
+----
+# Actualizar todos los paquetes del sistema
+dnf update
+----
+
+[unordered.stack]
+upgrade:: `dnf upgrade` Actualizar paquetes (equivalente a update)
++
+[source,bash]
+----
+# Actualizar el sistema
+dnf upgrade
+----
+
+NOTE: En `dnf`, `update` y `upgrade` son funcionalmente equivalentes.
+
+[unordered.stack]
+check-update:: `dnf check-update` Comprobar actualizaciones disponibles
++
+[source,bash]
+----
+# Mostrar paquetes que pueden actualizarse
+dnf check-update
+----
+
+[unordered.stack]
+clean:: `dnf clean` Limpiar caché
++
+[source,bash]
+----
+# Limpiar todos los metadatos y caché
+dnf clean all
+----
+
+[unordered.stack]
+provides:: `dnf provides` Averiguar qué paquete proporciona un archivo
++
+[source,bash]
+----
+# Buscar qué paquete contiene un binario o archivo
+dnf provides /usr/bin/python3
+----
+
+[unordered.stack]
+history:: `dnf history` Consultar historial de transacciones
++
+[source,bash]
+----
+# Mostrar historial de operaciones
+dnf history
+
+# Deshacer una transacción concreta
+dnf history undo ID
+----
+
+NOTE: `dnf` es extensible mediante plugins, soporta transacciones reversibles
+y ofrece una mejor resolución de dependencias que `yum`.
+

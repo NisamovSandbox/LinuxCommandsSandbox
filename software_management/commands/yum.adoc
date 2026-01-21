@@ -1,0 +1,130 @@
+=== yum
+Gestión de paquetes en sistemas Red Hat antiguos y compatibles
+
+El comando `yum` (Yellowdog Updater, Modified) es el gestor de paquetes clásico
+en sistemas basados en RPM. Actualmente está obsoleto en favor de `dnf`, pero
+sigue presente en sistemas antiguos como CentOS 7.
+
+[source,bash]
+----
+# Instalación de paquete "ejemplo"
+yum install ejemplo
+----
+
+[unordered.stack]
+install:: `yum install` Instalar paquetes
++
+[source,bash]
+----
+# Instalar un paquete
+yum install httpd
+
+# Instalar varios paquetes
+yum install vim curl git
+----
+
+[unordered.stack]
+remove:: `yum remove` Eliminar paquetes
++
+[source,bash]
+----
+# Eliminar un paquete
+yum remove httpd
+----
+
+[unordered.stack]
+reinstall:: `yum reinstall` Reinstalar paquetes
++
+[source,bash]
+----
+# Reinstalar un paquete
+yum reinstall httpd
+----
+
+[unordered.stack]
+list:: `yum list` Listar paquetes
++
+[source,bash]
+----
+# Listar todos los paquetes
+yum list
+
+# Listar paquetes instalados
+yum list installed
+
+# Listar paquetes disponibles
+yum list available
+
+# Listar paquetes actualizables
+yum list updates
+----
+
+[unordered.stack]
+search:: `yum search` Buscar paquetes
++
+[source,bash]
+----
+# Buscar paquetes relacionados con "httpd"
+yum search httpd
+----
+
+[unordered.stack]
+info:: `yum info` Mostrar información de un paquete
++
+[source,bash]
+----
+# Mostrar información detallada del paquete
+yum info httpd
+----
+
+[unordered.stack]
+update:: `yum update` Actualizar paquetes
++
+[source,bash]
+----
+# Actualizar todos los paquetes del sistema
+yum update
+----
+
+[unordered.stack]
+check-update:: `yum check-update` Comprobar actualizaciones disponibles
++
+[source,bash]
+----
+# Mostrar paquetes que pueden actualizarse
+yum check-update
+----
+
+[unordered.stack]
+clean:: `yum clean` Limpiar caché
++
+[source,bash]
+----
+# Limpiar toda la caché
+yum clean all
+----
+
+[unordered.stack]
+provides:: `yum provides` Averiguar qué paquete proporciona un archivo
++
+[source,bash]
+----
+# Buscar qué paquete contiene un archivo
+yum provides /usr/bin/python
+----
+
+[unordered.stack]
+history:: `yum history` Consultar historial de transacciones
++
+[source,bash]
+----
+# Mostrar historial de operaciones
+yum history
+
+# Deshacer una transacción concreta
+yum history undo ID
+----
+
+NOTE: `yum` ha sido sustituido por `dnf` en sistemas modernos (RHEL 8+, Fedora).
+Se recomienda migrar a `dnf` siempre que sea posible.
+
