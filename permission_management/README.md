@@ -19,8 +19,5 @@ Incluye tanto el modelo tradicional como extensiones avanzadas.
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [access_control_lists](/permission_management/access_control_lists)
-  - [access_control_lists/commands.md](/permission_management/access_control_lists/commands.md)
-  - [access_control_lists/theory.md](/permission_management/access_control_lists/theory.md)
-- [permissions.md](/permission_management/permissions.md)
-- [theory.md](/permission_management/theory.md)
+- [commands](/permission_management/commands)
 <!-- AUTO-GENERATED-INDEX:END -->
