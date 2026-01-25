@@ -1,6 +1,6 @@
-= Atajos de Teclado
+=== Atajos de Teclado
 
-== Linux Virtual Box
+==== Linux Virtual Box
 
 [cols="1,2", options="header"]
 |===
@@ -19,7 +19,7 @@
 |Movernos entre ventanas en barra de tareas
 |===
 
-== Linux Genérico
+==== Linux Genérico
 
 [cols="1,2", options="header"]
 |===
@@ -163,3 +163,4 @@
 |exit
 |Sale de la sesión actual
 |===
+
