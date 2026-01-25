@@ -1,8 +1,10 @@
 name: Translate to English
+
 on:
   push:
     branches:
       - main
+
 jobs:
   translate:
     runs-on: ubuntu-latest
@@ -14,14 +16,21 @@ jobs:
           fetch-depth: 0
           ref: main
 
+      - name: Cache Hugging Face models
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/huggingface
+          key: hugface-models-${{ runner.os }}-${{ hashFiles('.github/scripts/translate_repo.py') }}
+          restore-keys: |
+            hugface-models-${{ runner.os }}-
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
 
       - name: Install dependencies
-        run: |
-          pip install torch transformers sentencepiece
+        run: pip install torch transformers sentencepiece
 
       - name: Recreate english branch
         run: git checkout -B english
