@@ -30,10 +30,10 @@ jobs:
       - name: Configurar Python para traducción
         uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
+          python-version: '3.12'
 
       - name: Instalar librería de traducción
-        run: pip install googletrans==4.0.0-rc1
+        run: pip install deep-translator
 
       - name: Crear directorio de PDFs y temporal para traducción
         run: mkdir -p pdf tmp_en
