@@ -68,6 +68,11 @@ ip address show
 
 ==== Interfaces de Red
 
+Los equipos cuentan con tres intertfaces de red:
+- Default: Permite la conexion de los escritorios a internet 
+- VPN: Permite comunicar equipos directamente por un canal cifrado E2E (Extremo a Extremo)
+- Personal: Permiten que los escritorios de los usuarios estén en la misma red (VLAN)
+
 [cols="2,6", options="header"]
 |===
 | Interfaz | Descripción
