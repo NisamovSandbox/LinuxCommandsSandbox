@@ -1,0 +1,61 @@
+=== Creación de un disco virtual como disco secundario
+
+Este procedimiento describe cómo crear un archivo de imagen que actúe como un disco secundario en un sistema Linux y asociarlo a un dispositivo de bloque mediante un dispositivo de bucle (loop).
+
+==== Paso 1: Crear la imagen del disco
+
+[source,bash]
+----
+dd if=/dev/zero of=~/disco_secundario.img bs=1M count=1024
+----
+
+* `if=/dev/zero`: fuente de datos que rellena el archivo con ceros.
+* `of=~/disco_secundario.img`: archivo que actuará como disco virtual.
+* `bs=1M`: tamaño de bloque de 1 megabyte.
+* `count=1024`: número de bloques (1 MB × 1024 = 1 GB).
+
+Resultado: se crea un archivo de 1 GB lleno de ceros que simula un disco en blanco.
+
+==== Paso 2: Asociar la imagen a un dispositivo de bucle (loop)
+
+[source,bash]
+----
+losetup -f ~/disco_secundario.img
+----
+
+* `losetup`: herramienta para configurar dispositivos de bucle.
+* `-f`: asigna automáticamente el primer dispositivo loop disponible.
+* `~/disco_secundario.img`: imagen que se asocia al dispositivo.
+
+Resultado: el archivo se presenta al sistema como un dispositivo de bloque, tratable como un disco físico.
+
+Para verificar los dispositivos loop activos:
+
+[source,bash]
+----
+losetup -a
+----
+
+==== Paso 3 (opcional): Montaje persistente del disco
+
+Para que el disco se monte automáticamente en cada arranque del sistema, es necesario usar su identificador UUID.
+
+Obtener el UUID del dispositivo o de la partición:
+
+[source,bash]
+----
+blkid /dev/sdb1
+----
+
+Agregar la entrada correspondiente en el archivo `/etc/fstab`:
+
+[source,bash]
+----
+blkid -s UUID -o value /dev/sdb1 >> /etc/fstab
+----
+
+* `UUID`: identificador único del sistema de archivos.
+* `/etc/fstab`: fichero que define los sistemas de archivos que se montan al inicio.
+
+Resultado: el disco virtual se montará automáticamente al iniciar el sistema.
+

@@ -1,0 +1,135 @@
+=== Creación de un RAID por software en Linux (RAID 1)
+
+Este procedimiento describe el proceso para crear un arreglo RAID por software utilizando `mdadm`, combinando varios discos o particiones para mejorar la tolerancia a fallos.
+
+El ejemplo se basa en un RAID 1 (espejo), donde los datos se duplican en dos dispositivos.
+
+* RAID 1 mejora la tolerancia a fallos, pero no sustituye a las copias de seguridad.
+* La capacidad útil será equivalente al tamaño del disco más pequeño.
+* El rendimiento de lectura puede mejorar, pero la escritura se duplica.
+
+==== Objetivo
+
+Crear un dispositivo RAID 1 funcional, formatearlo con un sistema de archivos y dejarlo preparado para su uso en el sistema.
+
+==== Requisitos previos
+
+* Sistema GNU/Linux con permisos de administrador
+* Dos discos o particiones sin datos importantes
+* Herramientas instaladas: `mdadm`, `lsblk`, `mkfs`, `mount`
+
+==== Escenario de ejemplo
+
+Se utilizarán dos dispositivos de bloque:
+
+* `/dev/sdb`
+* `/dev/sdc`
+
+==== Paso 1: Comprobar los dispositivos disponibles
+
+Antes de crear el RAID, se deben identificar los discos disponibles en el sistema.
+
+[source,bash]
+----
+lsblk
+----
+
+Verificar que los dispositivos seleccionados no contienen datos relevantes.
+
+==== Paso 2: Crear el arreglo RAID
+
+Crear el dispositivo RAID 1 usando `mdadm`:
+
+[source,bash]
+----
+mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/sdb /dev/sdc
+----
+
+* `/dev/md0`: nombre del dispositivo RAID resultante.
+* `--level=1`: nivel RAID (espejo).
+* `--raid-devices=2`: número de dispositivos usados.
+* `/dev/sdb /dev/sdc`: discos que forman el RAID.
+
+Resultado: se crea el dispositivo `/dev/md0`.
+
+==== Paso 3: Verificar el estado del RAID
+
+Comprobar el estado del arreglo RAID:
+
+[source,bash]
+----
+cat /proc/mdstat
+----
+
+También se puede obtener información detallada con:
+
+[source,bash]
+----
+mdadm --detail /dev/md0
+----
+
+==== Paso 4: Crear un sistema de archivos
+
+Una vez creado el dispositivo RAID, se debe formatear como si fuera un disco normal.
+
+[source,bash]
+----
+mkfs.ext4 /dev/md0
+----
+
+Resultado: el dispositivo RAID queda listo para su montaje.
+
+==== Paso 5: Montar el RAID
+
+Crear el punto de montaje y montar el dispositivo:
+
+[source,bash]
+----
+mkdir /mnt/raid
+mount /dev/md0 /mnt/raid
+----
+
+Comprobar el montaje:
+
+[source,bash]
+----
+df -h
+----
+
+==== Paso 6 (opcional): Montaje persistente
+
+Para que el RAID se monte automáticamente tras reiniciar el sistema, se debe usar su UUID.
+
+Obtener el UUID del dispositivo RAID:
+
+[source,bash]
+----
+blkid /dev/md0
+----
+
+Añadir la entrada correspondiente en `/etc/fstab`:
+
+[source,bash]
+----
+UUID=<uuid_del_raid> /mnt/raid ext4 defaults 0 0
+----
+
+==== Paso 7 (recomendado): Guardar la configuración de mdadm
+
+Para asegurar que el RAID se detecte correctamente en el arranque:
+
+[source,bash]
+----
+mdadm --detail --scan >> /etc/mdadm/mdadm.conf
+----
+
+En algunos sistemas puede ser necesario actualizar el initramfs.
+
+==== Verificación final
+
+El RAID está correctamente configurado si:
+
+* `/dev/md0` aparece como activo.
+* El sistema de archivos está montado.
+* `cat /proc/mdstat` muestra el estado `active`.
+

@@ -11,7 +11,10 @@
 :lang: es
 :author: Andrés Ruslan Abadías Otal
 
-Andrés Ruslan Abadías Otal | github.com/Nisamov
+:pdf-watermark-text: "g\ni\nt\nh\nu\nb\n.\nc\no\nm\n/\nN\ni\ns\na\nm\no\nv"
+:pdf-watermark-opacity: 0.1
+:pdf-watermark-angle: 30
+:pdf-watermark-font-size: 50
 
 == Introducción
 Este manual está pensado como guía de referencia para:
@@ -21,7 +24,7 @@ Este manual está pensado como guía de referencia para:
 * Usuarios técnicos en proceso de aprendizaje
 
 == Sistema RAID
-include::raid/raid.adoc[]
+include::raid/theory.adoc[]
 
 == Particiones
 include::partitions/theory.adoc

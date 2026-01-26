@@ -1,0 +1,136 @@
+=== Particionado y preparación de un disco en Linux
+
+Este procedimiento describe los pasos necesarios para preparar un disco nuevo en Linux, creando una tabla de particiones, definiendo una o varias particiones y dejándolo listo para su uso mediante un sistema de archivos.
+
+* El particionado elimina los datos existentes.
+* GPT es el estándar recomendado en sistemas actuales.
+* El sistema de archivos puede variar según el uso previsto (ext4, xfs, etc.).
+
+==== Objetivo
+
+Crear y preparar un disco para su uso en el sistema, incluyendo:
+particionado, creación del sistema de archivos y montaje.
+
+==== Requisitos previos
+
+* Sistema GNU/Linux con permisos de administrador
+* Un disco sin datos importantes
+* Herramientas disponibles: `lsblk`, `fdisk` o `cfdisk`, `mkfs`, `mount`
+
+==== Escenario de ejemplo
+
+Se utilizará el siguiente disco:
+
+* `/dev/sdb`
+
+==== Paso 1: Identificar el disco disponible
+
+Antes de modificar cualquier disco, se deben listar los dispositivos de bloque del sistema.
+
+[source,bash]
+----
+lsblk
+----
+
+Verificar el tamaño del disco y confirmar que no contiene información relevante.
+
+==== Paso 2: Crear la tabla de particiones
+
+Se crea una tabla de particiones en el disco.  
+En sistemas modernos se recomienda GPT.
+
+[source,bash]
+----
+fdisk /dev/sdb
+----
+
+Dentro de `fdisk`, realizar las siguientes acciones:
+
+* Crear una nueva tabla de particiones (GPT).
+* Crear una nueva partición primaria.
+* Guardar los cambios y salir.
+
+Alternativamente, se puede usar una herramienta interactiva:
+
+[source,bash]
+----
+cfdisk /dev/sdb
+----
+
+Resultado: el disco dispone de una o varias particiones definidas.
+
+==== Paso 3: Verificar las particiones creadas
+
+Comprobar que las particiones existen correctamente:
+
+[source,bash]
+----
+lsblk
+----
+
+Ejemplo de partición creada:
+
+* `/dev/sdb1`
+
+==== Paso 4: Crear el sistema de archivos
+
+Una vez creada la partición, se debe formatear con un sistema de archivos.
+
+[source,bash]
+----
+mkfs.ext4 /dev/sdb1
+----
+
+Resultado: la partición queda lista para almacenar datos.
+
+==== Paso 5: Crear el punto de montaje
+
+Crear el directorio donde se montará la partición:
+
+[source,bash]
+----
+mkdir /mnt/datos
+----
+
+==== Paso 6: Montar la partición
+
+Montar la partición en el sistema de archivos:
+
+[source,bash]
+----
+mount /dev/sdb1 /mnt/datos
+----
+
+Comprobar el montaje:
+
+[source,bash]
+----
+df -h
+----
+
+==== Paso 7 (opcional): Montaje persistente
+
+Para que la partición se monte automáticamente tras reiniciar el sistema, se debe usar su UUID.
+
+Obtener el UUID de la partición:
+
+[source,bash]
+----
+blkid /dev/sdb1
+----
+
+Añadir la entrada correspondiente en el archivo `/etc/fstab`:
+
+[source,bash]
+----
+UUID=<uuid_de_la_particion> /mnt/datos ext4 defaults 0 0
+----
+
+==== Verificación final
+
+El disco está correctamente preparado si:
+
+* La partición aparece en `lsblk`.
+* El sistema de archivos está montado.
+* El espacio es visible mediante `df -h`.
+

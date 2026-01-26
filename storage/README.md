@@ -12,6 +12,7 @@ Incluye teoría y ejemplos prácticos.
 - Particiones
 - Copias de seguridad
 - RAID y almacenamiento avanzado
+- Procedimientos que no se incluyen en la generación automática de PDFs
 
 ---
 
