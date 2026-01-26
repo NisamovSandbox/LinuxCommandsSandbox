@@ -1,8 +1,8 @@
-= Estructura de Directorios
+=== Estructura de Directorios
 :toc:
 :icons: font
 
-== Árbol de Directorios
+==== Árbol de Directorios
 
 [listing]
 ----
@@ -55,7 +55,7 @@
     └── usb
 ----
 
-== Descripción de Directorios
+==== Descripción de Directorios
 
 [.directory-listing]
 * `/` (Raíz):: Directorio raíz del sistema de archivos. Todos los demás directorios y archivos se encuentran bajo este.
@@ -106,3 +106,4 @@
   ** `/media/usb`:: USB
 * `.`:: Apunta al directorio actual
 * `..`:: Apunta al directorio superior
+

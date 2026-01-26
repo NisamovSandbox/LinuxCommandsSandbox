@@ -38,8 +38,3 @@ mdadm --add /dev/md0 /dev/loop?? # replica los datos al nuevo disco
 mdadm --detail /dev/md0 # Comprobar el estado de la reconstrucción # si el estado es clean o active and sync, está bien
 mount -t ext4 /dev/md0 /mnt/raid1
 ll /mnt/raid1 # Comprobar que los datos están accesibles
-
-# Investigar las siguientes opciones de montaje y explicar su funcionamiento:
-atime
-noatime
-realtime

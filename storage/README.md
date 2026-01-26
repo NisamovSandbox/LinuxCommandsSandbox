@@ -12,6 +12,7 @@ Incluye teoría y ejemplos prácticos.
 - Particiones
 - Copias de seguridad
 - RAID y almacenamiento avanzado
+- Procedimientos que no se incluyen en la generación automática de PDFs
 
 ---
 
@@ -19,13 +20,9 @@ Incluye teoría y ejemplos prácticos.
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [backup](/storage/backup)
-  - [backup/commands.md](/storage/backup/commands.md)
-  - [backup/theory.md](/storage/backup/theory.md)
+- [commands](/storage/commands)
 - [partitions](/storage/partitions)
-  - [partitions/commands.md](/storage/partitions/commands.md)
-  - [partitions/theory.md](/storage/partitions/theory.md)
-  - [partitions/virtualdisk.md](/storage/partitions/virtualdisk.md)
+- [procedures](/storage/procedures)
 - [raid](/storage/raid)
   - [raid/mount.md](/storage/raid/mount.md)
-  - [raid/theory.md](/storage/raid/theory.md)
 <!-- AUTO-GENERATED-INDEX:END -->
