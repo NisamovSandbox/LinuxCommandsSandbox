@@ -35,10 +35,10 @@ jobs:
       - name: Instalar librería de traducción
         run: pip install deep-translator
 
-      - name: Crear directorio de PDFs y temporal para traducción
+      - name: Crear directorios
         run: mkdir -p pdf tmp_en
 
-      - name: Generar PDFs Español e Inglés automáticamente
+      - name: Generar PDFs Español e Inglés
         run: |
           ASCIIDOCTOR=$(which asciidoctor-pdf)
           for dir in */ ; do
@@ -49,10 +49,12 @@ jobs:
               echo "Preparando versión en inglés..."
               TMP_DIR="../tmp_en/$NAME"
               mkdir -p "$TMP_DIR"
-              rsync -a "$dir/" "$TMP_DIR/"
+              rsync -a "$dir/" "$TMP_DIR/"  # Copia todo, incluyendo subcarpetas
+              # Traducir solo archivos .adoc dentro del TMP_DIR
               python3 .github/scripts/translate_adoc.py "$TMP_DIR" "$TMP_DIR"
+
               echo "Generando PDF inglés para $NAME..."
-              (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf")
+              (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf" || echo "Error generando PDF inglés, se continúa...")
             fi
           done
 
@@ -66,21 +68,6 @@ jobs:
           for pdf in pdf/*.pdf; do
             echo "- $(basename "$pdf")" >> release_body.md
           done
-
-      - name: Borrar todos los tags remotos
-        run: |
-          echo "Obteniendo todos los tags remotos..."
-          tags=$(git ls-remote --tags origin | awk '{print $2}' | sed 's#refs/tags/##' | grep -v '\^{}')
-          if [ -z "$tags" ]; then
-            echo "No hay tags para borrar."
-          else
-            for tag in $tags; do
-              echo "Borrando tag remoto: $tag"
-              git push origin --delete "$tag"
-            done
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Borrar todos los tags remotos
         run: |
