@@ -19,10 +19,9 @@ Incluye teoría y ejemplos prácticos.
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [backup](/storage/backup)
-  - [backup/commands.md](/storage/backup/commands.md)
   - [backup/theory.md](/storage/backup/theory.md)
+- [commands](/storage/commands)
 - [partitions](/storage/partitions)
-  - [partitions/commands.md](/storage/partitions/commands.md)
   - [partitions/theory.md](/storage/partitions/theory.md)
   - [partitions/virtualdisk.md](/storage/partitions/virtualdisk.md)
 - [raid](/storage/raid)
