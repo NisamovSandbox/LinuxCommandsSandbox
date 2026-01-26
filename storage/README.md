@@ -20,7 +20,6 @@ Incluye teoría y ejemplos prácticos.
 
 <!-- AUTO-GENERATED-INDEX:START -->
 - [backup](/storage/backup)
-  - [backup/theory.md](/storage/backup/theory.md)
 - [commands](/storage/commands)
 - [partitions](/storage/partitions)
 - [procedures](/storage/procedures)
