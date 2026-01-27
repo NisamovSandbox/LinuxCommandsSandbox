@@ -52,7 +52,7 @@ jobs:
               NAME="${dir%/}"
               
               echo "Generando PDF español para $NAME..."
-              (cd "$dir" && "$ASCIIDOCTOR" index.adoc -o "../pdf/es_${NAME}.pdf")
+              (cd "$dir" && "$ASCIIDOCTOR" index.adoc -o "../pdf/ESP_${NAME}.pdf")
 
               echo "Preparando versión en inglés..."
               TMP_DIR="tmp_en/$NAME"
@@ -66,7 +66,7 @@ jobs:
 
               echo "Generando PDF inglés para $NAME..."
               if [ -f "$TMP_DIR/index.adoc" ]; then
-                (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf")
+                (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/ENG_${NAME}.pdf")
               else
                 echo "ERROR: index.adoc no encontrado en $TMP_DIR"
               fi
@@ -84,15 +84,66 @@ jobs:
 
       - name: Crear body del release
         run: |
-          echo "## 📕 PDFs generados automáticamente" > release_body.md
-          echo "" >> release_body.md
-          echo "![Release Image](.github/media/released.png)" >> release_body.md
-          echo "### Documentación disponible:" >> release_body.md
-          echo "" >> release_body.md
-          for pdf in pdf/*.pdf; do
-            echo "- $(basename "$pdf")" >> release_body.md
-          done
+          {
+            echo "## 📕 PDFs generados automáticamente"
+            echo ""
+            echo "![Release Image](.github/media/released.png)"
+            echo ""
+            echo "<details open>"
+            echo "<summary><strong>• Documentación ESP</strong></summary>"
+            echo ""
+            for pdf in pdf/ESP_*.pdf; do
+              [ -e "$pdf" ] || continue
+              echo "- $(basename "$pdf")"
+            done
+            echo ""
+            echo "</details>"
+            echo ""
+            echo "<details open>"
+            echo "<summary><strong>• Documentation ENG</strong></summary>"
+            echo ""
+            for pdf in pdf/ENG_*.pdf; do
+              [ -e "$pdf" ] || continue
+              echo "- $(basename "$pdf")"
+            done
+            echo ""
+            echo "</details>"
+          } > release_body.md
+
           cat release_body.md
+
+      - name: Borrar todos los releases existentes
+        run: |
+          set -e
+
+          REPO="${{ github.repository }}"
+          PAGE=1
+          echo "Eliminando todos los releases del repositorio $REPO ..."
+          while true; do
+            echo "Consultando página $PAGE..."
+            RELEASE_IDS=$(curl -s \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/releases?per_page=100&page=$PAGE" \
+              | jq -r '.[].id')
+
+            if [ -z "$RELEASE_IDS" ]; then
+              echo "No hay más releases."
+              break
+            fi
+
+            for ID in $RELEASE_IDS; do
+              echo "Borrando release ID: $ID"
+              curl -s -X DELETE \
+                -H "Authorization: Bearer $GITHUB_TOKEN" \
+                -H "Accept: application/vnd.github+json" \
+                "https://api.github.com/repos/$REPO/releases/$ID"
+            done
+            PAGE=$((PAGE + 1))
+          done
+          echo "Todos los releases han sido eliminados correctamente."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Borrar todos los tags remotos
         run: |
