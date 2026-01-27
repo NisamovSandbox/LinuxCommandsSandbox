@@ -57,7 +57,7 @@ jobs:
               python3 .github/scripts/translate_adoc.py "$TMP_DIR" "$TMP_DIR"
 
               echo "Generando PDF inglés para $NAME..."
-              (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf" || echo "Error generando PDF inglés, se continúa...")
+              (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf")
             fi
           done
 
@@ -95,7 +95,7 @@ jobs:
           tag_name: docs-pdf-${{ github.run_number }}
           name: "🔵 Docs Descargables PDF 📕"
           body_path: release_body.md
-          files: pdf/es_*.pdf pdf/en_*.pdf
+          files: pdf/*.pdf
           draft: false
           prerelease: false
         env:
