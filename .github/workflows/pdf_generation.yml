@@ -57,18 +57,18 @@ jobs:
               TMP_DIR="../tmp_en/$NAME"
               mkdir -p "$TMP_DIR"
               
-              # Copiar solo archivos .adoc al TMP_DIR
-              find "$dir" -name '*.adoc' -exec rsync -R {} "$TMP_DIR/" \;
+              # Copiar todos los archivos .adoc manteniendo la estructura
+              rsync -av --include='*/' --include='*.adoc' --exclude='*' "$dir" "$TMP_DIR/"
 
-              # Traducir archivos dentro de TMP_DIR y dejar los .adoc en TMP_DIR
-              python3 .github/scripts/translate_adoc.py "$TMP_DIR" "$TMP_DIR"
+              # Traducir archivos dentro de TMP_DIR
+              python3 .github/scripts/translate_adoc.py "$TMP_DIR/$NAME" "$TMP_DIR/$NAME"
 
               echo "Generando PDF inglés para $NAME..."
-              (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf")
-              
+              (cd "$TMP_DIR/$NAME" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf")
+
               # Verificar que se creó el PDF inglés
               if [ ! -f "../../pdf/en_${NAME}.pdf" ]; then
-                echo " ERROR: PDF inglés para $NAME no se generó correctamente."
+                echo "ERROR: PDF inglés para $NAME no se generó correctamente."
               fi
             fi
           done
