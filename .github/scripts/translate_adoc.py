@@ -2,7 +2,6 @@
 from pathlib import Path
 from deep_translator import GoogleTranslator
 import sys
-
 MAX_LEN = 4000
 def chunks(text, size=MAX_LEN):
     for i in range(0, len(text), size):
