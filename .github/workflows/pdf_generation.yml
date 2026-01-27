@@ -112,6 +112,39 @@ jobs:
 
           cat release_body.md
 
+      - name: Borrar todos los releases existentes
+        run: |
+          set -e
+
+          REPO="${{ github.repository }}"
+          PAGE=1
+          echo "Eliminando todos los releases del repositorio $REPO ..."
+          while true; do
+            echo "Consultando página $PAGE..."
+            RELEASE_IDS=$(curl -s \
+              -H "Authorization: Bearer $GITHUB_TOKEN" \
+              -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/$REPO/releases?per_page=100&page=$PAGE" \
+              | jq -r '.[].id')
+
+            if [ -z "$RELEASE_IDS" ]; then
+              echo "No hay más releases."
+              break
+            fi
+
+            for ID in $RELEASE_IDS; do
+              echo "Borrando release ID: $ID"
+              curl -s -X DELETE \
+                -H "Authorization: Bearer $GITHUB_TOKEN" \
+                -H "Accept: application/vnd.github+json" \
+                "https://api.github.com/repos/$REPO/releases/$ID"
+            done
+            PAGE=$((PAGE + 1))
+          done
+          echo "Todos los releases han sido eliminados correctamente."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Borrar todos los tags remotos
         run: |
           set +e
