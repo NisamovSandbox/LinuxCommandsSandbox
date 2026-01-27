@@ -21,7 +21,7 @@ jobs:
 
       - name: Instalar Asciidoctor PDF
         run: gem install asciidoctor-pdf --no-document
-        
+
       - name: Instalar Rouge (dependencia de Asciidoctor PDF)
         run: gem install rouge --no-document
 
@@ -43,6 +43,7 @@ jobs:
 
       - name: Generar PDFs Español e Inglés
         run: |
+          set -e
           ASCIIDOCTOR=$(which asciidoctor-pdf)
           mkdir -p pdf tmp_en
 
@@ -54,20 +55,24 @@ jobs:
               (cd "$dir" && "$ASCIIDOCTOR" index.adoc -o "../pdf/es_${NAME}.pdf")
 
               echo "Preparando versión en inglés..."
-              TMP_DIR="../tmp_en/$NAME"
+              TMP_DIR="tmp_en/$NAME"
               mkdir -p "$TMP_DIR"
-              
-              # Copiar solo el contenido de la carpeta, manteniendo subdirectorios y .adoc
-              rsync -av --include='*/' --include='*.adoc' --exclude='*' "$dir"/ "$TMP_DIR"/
 
-              # Traducir archivos dentro de TMP_DIR
+              # Copiar todo el módulo manteniendo estructura y subdirectorios
+              rsync -av "$dir"/ "$TMP_DIR"/
+
+              # Traducir todos los archivos .adoc in-place dentro de TMP_DIR
               python3 .github/scripts/translate_adoc.py "$TMP_DIR" "$TMP_DIR"
 
               echo "Generando PDF inglés para $NAME..."
-              (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf")
+              if [ -f "$TMP_DIR/index.adoc" ]; then
+                (cd "$TMP_DIR" && "$ASCIIDOCTOR" index.adoc -o "../../pdf/en_${NAME}.pdf")
+              else
+                echo "ERROR: index.adoc no encontrado en $TMP_DIR"
+              fi
 
-              # Verificar que se creó el PDF inglés
-              if [ ! -f "../../pdf/en_${NAME}.pdf" ]; then
+              # Verificar PDF inglés
+              if [ ! -f "pdf/en_${NAME}.pdf" ]; then
                 echo "ERROR: PDF inglés para $NAME no se generó correctamente."
               fi
             fi
