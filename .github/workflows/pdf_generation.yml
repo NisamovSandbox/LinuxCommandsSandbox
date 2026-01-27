@@ -21,6 +21,9 @@ jobs:
 
       - name: Instalar Asciidoctor PDF
         run: gem install asciidoctor-pdf --no-document
+        
+      - name: Instalar Rouge (dependencia de Asciidoctor PDF)
+        run: gem install rouge --no-document
 
       - name: Verificar instalación de Asciidoctor PDF
         run: |
@@ -92,7 +95,7 @@ jobs:
           tag_name: docs-pdf-${{ github.run_number }}
           name: "🔵 Docs Descargables PDF 📕"
           body_path: release_body.md
-          files: pdf/*.pdf
+          files: pdf/es_*.pdf pdf/en_*.pdf
           draft: false
           prerelease: false
         env:
