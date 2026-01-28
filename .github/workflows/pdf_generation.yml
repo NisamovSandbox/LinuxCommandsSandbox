@@ -110,10 +110,13 @@ jobs:
       - name: Crear releases por idioma
         run: |
           echo "Creando releases separados por idioma..."
-          for LANG in ESP ENG ZH; do
+          for LANG in ZH ENG ESP; do
             FILES=$(ls pdf/${LANG}_*.pdf | tr '\n' ' ')
             echo "Archivos $LANG: $FILES"
-            gh release create $LANG $FILES --title "Documentación PDF $LANG" --notes "Generado automáticamente para $LANG"
+            IMAGE_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/media/released_${LANG}.png"
+            gh release create $LANG $FILES \
+              --title "Documentación PDF $LANG" \
+              --notes "![Release Image]($IMAGE_URL)"
           done
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
