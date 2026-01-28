@@ -25,6 +25,9 @@ jobs:
           gem install asciidoctor-pdf --no-document
           gem install rouge --no-document
 
+      - name: Instalar GitHub CLI
+        run: sudo apt-get update && sudo apt-get install -y gh
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
@@ -59,10 +62,12 @@ jobs:
           PAGE=1
           while true; do
             IDS=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
-             "https://api.github.com/repos/$REPO/releases?per_page=100&page=$PAGE" | jq -r '.[].id')
+              "https://api.github.com/repos/$REPO/releases?per_page=100&page=$PAGE" | jq -r '.[].id')
             [ -z "$IDS" ] && break
             for ID in $IDS; do
-              curl -s -X DELETE -H "Authorization: Bearer $GITHUB_TOKEN" \ "https://api.github.com/repos/$REPO/releases/$ID"
+              [ -z "$ID" ] && continue
+              curl -s -X DELETE -H "Authorization: Bearer $GITHUB_TOKEN" \
+                "https://api.github.com/repos/$REPO/releases/$ID" || true
             done
             PAGE=$((PAGE + 1))
           done
