@@ -4,6 +4,7 @@ on:
   schedule:
     # Ejecutar los lunes y viernes a medianoche
     - cron: '0 0 * * 1,5'
+  workflow_dispatch:
 
 jobs:
   build-pdfs:
