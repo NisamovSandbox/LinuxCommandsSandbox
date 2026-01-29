@@ -8,26 +8,22 @@ import re
 if len(sys.argv) != 4:
     print("Uso: translate_adoc.py <SRC_DIR> <DST_DIR> <TARGET_LANG>")
     sys.exit(1)
-
 SRC_ROOT = Path(sys.argv[1])
 DST_ROOT = Path(sys.argv[2])
 TARGET_LANG = sys.argv[3]
 DST_ROOT.mkdir(parents=True, exist_ok=True)
 translator = GoogleTranslator(source="es", target=TARGET_LANG)
 TECH_PATTERN = re.compile(r"[{}\[\]_*:`<>]")
-def should_translate(line: str, target_lang: str) -> bool:
+def should_translate(line: str) -> bool:
     stripped = line.lstrip()
-
     if stripped.strip() == "":
         return False
-
     if stripped.startswith((
         "=", ":", "include::",
         "[", "* ", "- ", "+ ",
         "//", "ifdef::", "ifndef::", "ifeval::"
     )):
         return False
-
     if stripped.startswith("[") and "]" in stripped:
         return False
     if any(x in stripped for x in (
@@ -40,10 +36,7 @@ def should_translate(line: str, target_lang: str) -> bool:
         return False
     if TECH_PATTERN.search(stripped):
         return False
-    if target_lang.startswith("zh") and len(stripped) < 40:
-        return False
     return True
-
 def translate_adoc(text: str) -> str:
     output = []
     in_code_block = False
@@ -56,7 +49,7 @@ def translate_adoc(text: str) -> str:
         if in_code_block:
             output.append(line)
             continue
-        if should_translate(line, TARGET_LANG):
+        if should_translate(line):
             try:
                 translated = translator.translate(line.rstrip("\n"))
                 output.append(translated + "\n")
@@ -70,9 +63,7 @@ for src_file in SRC_ROOT.rglob("*.adoc"):
     relative_path = src_file.relative_to(SRC_ROOT)
     dst_file = DST_ROOT / relative_path
     dst_file.parent.mkdir(parents=True, exist_ok=True)
-
     text = src_file.read_text(encoding="utf-8")
     translated_text = translate_adoc(text)
     dst_file.write_text(translated_text, encoding="utf-8")
-
     print(f"Traducido ({TARGET_LANG}): {src_file} -> {dst_file}")

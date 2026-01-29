@@ -37,7 +37,7 @@ jobs:
         run: pip install deep-translator
 
       - name: Crear directorios temporales y de PDFs
-        run: mkdir -p tmp_en tmp_zh pdf
+        run: mkdir -p tmp_en tmp_de pdf
 
       - name: Listar y borrar tags
         run: |
@@ -74,7 +74,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generar PDFs ESP, ENG y ZH
+      - name: Generar PDFs ESP, ENG y DE
         run: |
           set -e
           ASCIIDOCTOR=$(which asciidoctor-pdf)
@@ -94,23 +94,19 @@ jobs:
             rsync -a "$DIR/" "$TMP_EN/"
             python3 .github/scripts/translate_adoc.py "$TMP_EN" "$TMP_EN" en
             "$ASCIIDOCTOR" "$TMP_EN/index.adoc" -o "pdf/ENG_${NAME}.pdf"
-
-            # Chino
-            TMP_ZH="tmp_zh/$NAME"
-            mkdir -p "$TMP_ZH"
-            rsync -a "$DIR/" "$TMP_ZH/"
-            python3 .github/scripts/translate_adoc.py "$TMP_ZH" "$TMP_ZH" zh-CN
-            "$ASCIIDOCTOR" \
-              -a pdf-theme=.github/themes/theme-zh.yml \
-              -a pdf-fontsdir=.github/fonts \
-              "$TMP_ZH/index.adoc" \
-              -o "pdf/ZH_${NAME}.pdf"
+            
+            # Alemán
+            TMP_DE="tmp_de/$NAME"
+            mkdir -p "$TMP_DE"
+            rsync -a "$DIR/" "$TMP_DE/"
+            python3 .github/scripts/translate_adoc.py "$TMP_DE" "$TMP_DE" de
+            "$ASCIIDOCTOR" "$TMP_DE/index.adoc" -o "pdf/DE_${NAME}.pdf"
           done
 
       - name: Crear releases por idioma
         run: |
           echo "Creando releases separados por idioma..."
-          for LANG in ZH ENG ESP; do
+          for LANG in DE ENG ESP; do
             FILES=$(ls pdf/${LANG}_*.pdf | tr '\n' ' ')
             echo "Archivos $LANG: $FILES"
             IMAGE_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/media/released_${LANG}.png"
