@@ -22,7 +22,7 @@ UNORDERED_BLOCK = re.compile(r'^\[unordered\.stack\]$')
 COMMENT_LINE = re.compile(r'^//')
 DIRECTIVE_LINE = re.compile(r'^(include|ifdef|ifndef|ifeval)::')
 ATTRIBUTE_LINE = re.compile(r'^:[\w-]+:')
-HEADER_LINE = re.compile(r'^=+ ')
+#HEADER_LINE = re.compile(r'^=+ ')
 MACRO_LINE = re.compile(r'^\[.*\]$')
 
 def should_translate(line: str) -> bool:
@@ -63,8 +63,7 @@ def should_translate(line: str) -> bool:
     ]):
         return False
     
-    # Si es un elemento de lista (traducir el texto después del marcador)
-    if stripped.startswith(("* ", "- ", "+ ")):
+    if stripped.startswith(("* ", "- ", "+ ", "# ", "=== ", "== ", "= ")):
         return True
     
     return True
