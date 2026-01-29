@@ -1,4 +1,4 @@
-==== apt
+=== apt
 Gestión de paquetes en sistemas Debian y derivados
 
 Instalación y administración de paquetes mediante la interfaz de alto nivel `apt`.

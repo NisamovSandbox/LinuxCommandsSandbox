@@ -1,4 +1,4 @@
-==== apk
+=== apk
 Gestión de paquetes en Alpine Linux
 
 El comando `apk` es el gestor de paquetes ligero de Alpine Linux, muy utilizado
