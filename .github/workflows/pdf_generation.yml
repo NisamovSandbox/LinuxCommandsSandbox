@@ -115,7 +115,7 @@ jobs:
             echo "Archivos $LANG: $FILES"
             IMAGE_URL="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/media/released_${LANG}.png"
             gh release create $LANG $FILES \
-              --title "Documentación PDF $LANG" \
+              --title "🔵 Documentación PDF $LANG 📕" \
               --notes "![Release Image]($IMAGE_URL)"
           done
         env:
