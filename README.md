@@ -13,6 +13,7 @@
   <a href="https://github.com/Nisamov/LinuxCommands/releases/tag/DE">
     <img src="https://img.shields.io/badge/🇩🇪%20DEUTSCH-Herunterladen?style=flat-square&color=000000&labelColor=ffffff" />
   </a>
+  <a href="https://github.com/Nisamov/LinuxCommands/releases/tag/PT"><img src="https://img.shields.io/badge/🇧🇷%20PORTUGUÊS-Em%20breve?style=flat&color=000000&labelColor=ffffff" /></a>
 </p>
 
 # LinuxCommands
