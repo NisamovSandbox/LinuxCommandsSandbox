@@ -128,9 +128,9 @@ jobs:
       - name: Crear releases por idioma
         run: |
           echo "Creando releases separados por idioma..."
-          ESPImg="https://raw.githubusercontent.com/${{ github.repository }}/.github/media/released_ESP.png"
-          ENGImg="https://raw.githubusercontent.com/${{ github.repository }}/.github/media/released_ENG.png"
-          DEImg="https://raw.githubusercontent.com/${{ github.repository }}/.github/media/released_DE.png"
+          ESPImg="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/media/released_ESP.png"
+          ENGImg="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/media/released_ENG.png"
+          DEImg="https://raw.githubusercontent.com/${{ github.repository }}/main/.github/media/released_DE.png"
 
           # Crear release para Inglés
           ENG_FILES=$(ls pdf/ENG_*.pdf 2>/dev/null | tr '\n' ' ')
