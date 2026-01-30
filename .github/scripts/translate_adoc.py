@@ -17,10 +17,10 @@ DST_ROOT.mkdir(parents=True, exist_ok=True)
 
 translator = GoogleTranslator(source="auto", target=TARGET_LANG)
 
-# Patrones más precisos
+# Patrones
 CODE_BLOCK_DELIM = re.compile(r'^----\s*$')
 SOURCE_BLOCK = re.compile(r'^\[source')
-TABLE_BLOCK = re.compile(r'^\|===')
+TABLE_BLOCK_START = re.compile(r'^\|===')
 COMMENT_LINE = re.compile(r'^\s*//')
 INCLUDE_DIRECTIVE = re.compile(r'^include::')
 ATTRIBUTE_DEF = re.compile(r'^:[\w-]+:')
@@ -28,6 +28,8 @@ HEADER_LINE = re.compile(r'^=+[\s\w]')
 MACRO_LINE = re.compile(r'^\[.*\]\s*$')
 LIST_ITEM = re.compile(r'^\s*[\*\-+]\s+')
 ENUM_ITEM = re.compile(r'^\s*\d+\.\s+')
+TABLE_ROW = re.compile(r'^\|')
+TABLE_HEADER_ATTRS = re.compile(r'^\[.*\]$')
 
 def should_translate_line(line: str) -> bool:
     """Determina si una línea completa debe ser traducida"""
@@ -51,10 +53,6 @@ def should_translate_line(line: str) -> bool:
     
     # Bloques de código fuente
     if SOURCE_BLOCK.match(stripped):
-        return False
-    
-    # Tablas
-    if TABLE_BLOCK.match(stripped):
         return False
     
     # Líneas que son solo macros
@@ -91,19 +89,156 @@ def extract_translatable_text(line: str) -> tuple[str, str, str]:
     
     return prefix, text, ""
 
+def process_table_row(line: str) -> tuple[str, list[str], str]:
+    """
+    Procesa una fila de tabla, dividiéndola en celdas.
+    Devuelve: (prefijo, lista_de_celdas, sufijo)
+    """
+    # Encontrar el primer '|' (podría haber espacios antes)
+    match = TABLE_ROW.search(line)
+    if not match:
+        return "", [], ""
+    
+    prefix = line[:match.start()]
+    table_content = line[match.start():].rstrip()
+    
+    # Dividir las celdas
+    # El formato es: |celda1 |celda2 |celda3
+    cells = []
+    current_cell = ""
+    in_backticks = False
+    in_brackets = False
+    bracket_depth = 0
+    
+    i = 0
+    while i < len(table_content):
+        char = table_content[i]
+        
+        # Manejar backticks (código inline)
+        if char == '`' and not in_brackets:
+            in_backticks = not in_backticks
+            current_cell += char
+            i += 1
+            continue
+        
+        # Manejar corchetes (atributos)
+        if char == '[' and not in_backticks:
+            in_brackets = True
+            bracket_depth += 1
+            current_cell += char
+            i += 1
+            continue
+        
+        if char == ']' and not in_backticks and in_brackets:
+            bracket_depth -= 1
+            if bracket_depth == 0:
+                in_brackets = False
+            current_cell += char
+            i += 1
+            continue
+        
+        # Separador de celdas (pero no si estamos dentro de backticks o brackets)
+        if char == '|' and not in_backticks and not in_brackets:
+            cells.append(current_cell.strip())
+            current_cell = ""
+            i += 1
+            
+            # Saltar espacios después del separador
+            while i < len(table_content) and table_content[i] == ' ':
+                i += 1
+            continue
+        
+        current_cell += char
+        i += 1
+    
+    # Añadir la última celda
+    if current_cell:
+        cells.append(current_cell.strip())
+    
+    return prefix, cells, ""
+
+def translate_table_cell(cell: str) -> str:
+    """
+    Traduce el contenido de una celda de tabla, preservando
+    formato y código inline.
+    """
+    if not cell or cell.strip() == "":
+        return cell
+    if cell.startswith('`') and cell.endswith('`'):
+        return cell
+    if TABLE_HEADER_ATTRS.match(cell):
+        return cell
+    
+    # Separar partes traducibles y no traducibles
+    parts = []
+    current_part = ""
+    in_backticks = False
+    in_brackets = False
+    bracket_depth = 0
+    
+    for char in cell:
+        # Manejar backticks
+        if char == '`':
+            if current_part:
+                parts.append((False, current_part))  # False = texto traducible
+                current_part = ""
+            in_backticks = not in_backticks
+            current_part = char
+            if not in_backticks:
+                parts.append((True, current_part))  # True = no traducible (código)
+                current_part = ""
+            continue
+        
+        # Manejar corchetes
+        if char == '[':
+            if current_part and not in_brackets:
+                parts.append((False, current_part))
+                current_part = ""
+            in_brackets = True
+            bracket_depth += 1
+            current_part += char
+            continue
+        
+        if char == ']':
+            current_part += char
+            bracket_depth -= 1
+            if bracket_depth == 0:
+                in_brackets = False
+                parts.append((True, current_part))
+                current_part = ""
+            continue
+        
+        current_part += char
+    
+    if current_part:
+        parts.append((in_backticks or in_brackets, current_part))
+    
+    translated_parts = []
+    for is_code, part in parts:
+        if is_code or not part.strip():
+            translated_parts.append(part)
+        else:
+            try:
+                translated = translator.translate(part)
+                if translated and translated != part:
+                    translated_parts.append(translated)
+                else:
+                    translated_parts.append(part)
+                time.sleep(0.1)
+            except Exception:
+                translated_parts.append(part)
+    
+    return ''.join(translated_parts)
+
 def translate_text(text: str) -> str:
     """Traduce texto con manejo de errores"""
     if not text or not text.strip():
         return text
-    
-    # Limitar longitud para evitar errores de la API
     if len(text) > 4500:
         chunks = []
-        # Dividir en párrafos si es posible
         paragraphs = text.split('\n\n')
         for para in paragraphs:
             if len(para) > 4500:
-                # Dividir por oraciones
                 sentences = re.split(r'(?<=[.!?])\s+', para)
                 chunk = ""
                 for sentence in sentences:
@@ -127,24 +262,21 @@ def translate_text(text: str) -> str:
             continue
             
         try:
-            # Escapar HTML antes de traducir
             chunk_clean = html.escape(chunk) if '<' in chunk or '>' in chunk else chunk
             
             translated = translator.translate(chunk_clean)
             if translated and translated != chunk_clean:
-                # Desescapar HTML si es necesario
                 if '&' in translated:
                     translated = html.unescape(translated)
                 translated_chunks.append(translated)
             else:
                 translated_chunks.append(chunk)
             
-            # Pequeña pausa entre traducciones
             time.sleep(0.2)
         except Exception as e:
             print(f"  Error traduciendo texto: {str(e)[:100]}")
             translated_chunks.append(chunk)
-            time.sleep(1)  # Pausa más larga si hay error
+            time.sleep(1)
     
     return '\n\n'.join(translated_chunks)
 
@@ -155,38 +287,59 @@ def translate_adoc(content: str) -> str:
     
     in_code_block = False
     in_table = False
-    buffer = []
-    current_indent = ""
+    table_header_lines = []  # Para almacenar líneas de atributos de tabla
     
     for i, line in enumerate(lines):
         original_line = line
-        
-        # Detectar bloques de código
         if CODE_BLOCK_DELIM.match(line.rstrip()):
             in_code_block = not in_code_block
             translated_lines.append(line)
             continue
-        
         if in_code_block:
             translated_lines.append(line)
             continue
-        
-        # Detectar tablas
-        if TABLE_BLOCK.match(line.rstrip()):
-            in_table = not in_table
-            translated_lines.append(line)
-            continue
+        if TABLE_BLOCK_START.match(line.rstrip()):
+            if not in_table:
+                in_table = True
+                translated_lines.append(line)
+                continue
+            else:
+                in_table = False
+                translated_lines.append(line)
+                continue
         
         if in_table:
-            translated_lines.append(line)
+            if line.strip().startswith('[') and line.strip().endswith(']'):
+                translated_lines.append(line)
+                continue
+            if TABLE_ROW.match(line.lstrip()):
+                try:
+                    prefix, cells, suffix = process_table_row(line)
+                    translated_cells = []
+                    for j, cell in enumerate(cells):
+                        if i > 0 and len(cells) > 0 and cells[0].strip():
+                            translated_cell = translate_table_cell(cell)
+                            translated_cells.append(translated_cell)
+                        else:
+                            translated_cell = translate_table_cell(cell)
+                            translated_cells.append(translated_cell)
+                    if translated_cells:
+                        translated_line = prefix + '|' + ' |'.join(translated_cells)
+                        translated_lines.append(translated_line)
+                    else:
+                        translated_lines.append(line)
+                    time.sleep(0.1)
+                    
+                except Exception as e:
+                    print(f"  Error procesando fila de tabla línea {i+1}: {str(e)[:50]}")
+                    translated_lines.append(line)
+            else:
+                translated_lines.append(line)
+            
             continue
-        
-        # Verificar si la línea debe ser traducida
         if not should_translate_line(line):
             translated_lines.append(line)
             continue
-        
-        # Extraer texto traducible
         prefix, text, suffix = extract_translatable_text(line)
         
         if text:
@@ -209,21 +362,17 @@ def process_file(src_file: Path, dst_file: Path):
     print(f"Procesando: {src_file}")
     
     try:
-        # Leer contenido
         text = src_file.read_text(encoding="utf-8")
         
-        # Verificar si el archivo tiene contenido
         if not text.strip():
             print(f"  Archivo vacío, copiando sin cambios")
             dst_file.parent.mkdir(parents=True, exist_ok=True)
             dst_file.write_text(text, encoding="utf-8")
             return
         
-        # Traducir
         print(f"  Traduciendo {len(text)} caracteres...")
         translated_text = translate_adoc(text)
         
-        # Escribir archivo traducido
         dst_file.parent.mkdir(parents=True, exist_ok=True)
         dst_file.write_text(translated_text, encoding="utf-8")
         
@@ -231,14 +380,12 @@ def process_file(src_file: Path, dst_file: Path):
         
     except Exception as e:
         print(f"  ✗ ERROR procesando {src_file}: {str(e)}")
-        # Copiar el archivo original si hay error
         dst_file.parent.mkdir(parents=True, exist_ok=True)
         try:
             dst_file.write_text(src_file.read_text(encoding="utf-8"), encoding="utf-8")
         except:
             dst_file.write_text("")
 
-# Procesar todos los archivos .adoc
 adoc_files = list(SRC_ROOT.rglob("*.adoc"))
 print(f"\nEncontrados {len(adoc_files)} archivos .adoc para traducir")
 
@@ -249,7 +396,6 @@ for i, src_file in enumerate(adoc_files, 1):
     print(f"\n[{i}/{len(adoc_files)}] ", end="")
     process_file(src_file, dst_file)
     
-    # Pausa ocasional para evitar sobrecargar la API
     if i % 10 == 0:
         print("  Pausando 2 segundos...")
         time.sleep(2)
